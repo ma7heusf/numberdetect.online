@@ -1,1288 +1,1275 @@
-<!DOCTYPE html><html lang="pt-BR"><head>
-   <script>
-  window.pixelId = "68c2eac8bb24001578446e87";
-  var a = document.createElement("script");
-  a.setAttribute("async", "");
-  a.setAttribute("defer", "");
-  a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
-  document.head.appendChild(a);
-</script><script async="" defer="" src="js/pixel.js"></script>
-<script>
-  window.pixelId = "68c2eac8bb24001578446e87";
-  var a = document.createElement("script");
-  a.setAttribute("async", "");
-  a.setAttribute("defer", "");
-  a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
-  document.head.appendChild(a);
-</script><script async="" defer="" src="js/pixel.js"></script>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WhatsApp - Report</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+<!DOCTYPE html><html lang="en"><head>
+<!-- Meta Pixel Code -->
+<script async="" src="js/fbevents.js"></script><script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '534495082571779');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=534495082571779&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+<script src="js/latest.js" data-utmify-prevent-subids="" async="" defer=""></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Zappdetect - informe</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/pagina.css" rel="stylesheet">
+    <link href="css/relatorio.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
     <link rel="stylesheet" href="css/leaflet.css">
-<script src="js/leaflet.js"></script>
-
-
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary-green: #25D366;
-            --dark-green: #128C7E;
-            --light-green: #DCF8C6;
-            --background-color: #f5f5f5;
-            --text-dark: #2c3e50;
-            --text-light: #7f8c8d;
-            --white: #ffffff;
-            --danger: #ff3b30;
-            --warning: #ffcc00;
-            --success: #34c759;
-            --border-radius: 12px;
-            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        body {
-            background-color: var(--background-color);
-            color: var(--text-dark);
-            line-height: 1.6;
-            padding-bottom: 60px;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        /* Header */
-        .header {
-            text-align: center;
-            padding: 30px 0;
-            background-color: var(--primary-green);
-            color: white;
-            border-radius: 0 0 var(--border-radius) var(--border-radius);
-            margin-bottom: 30px;
-            box-shadow: var(--shadow);
-        }
-
-        .header h1 {
-            font-size: 2rem;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-
-        .header p {
-            font-size: 1rem;
-            max-width: 600px;
-            margin: 0 auto;
-            opacity: 0.9;
-        }
-
-        /* Card Styles */
-        .card {
-            background-color: var(--white);
-            border-radius: var(--border-radius);
-            padding: 25px;
-            margin-bottom: 25px;
-            box-shadow: var(--shadow);
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.5s ease, transform 0.5s ease;
-        }
-
-        .card.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .card-title {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-            color: var(--dark-green);
-            font-weight: 600;
-            font-size: 1.3rem;
-        }
-
-        .card-title svg {
-            margin-right: 10px;
-            fill: var(--primary-green);
-            width: 24px;
-            height: 24px;
-        }
-
-        .card-content {
-            margin-bottom: 20px;
-        }
-
-        .highlight {
-            color: var(--danger);
-            font-weight: 600;
-        }
-
-        .warning {
-            color: var(--warning);
-            font-weight: 600;
-        }
-
-        .success {
-            color: var(--success);
-            font-weight: 600;
-        }
-
-        /* Conversation Block */
-        .conversation-block {
-            margin-top: 15px;
-        }
-
-        .contact-button {
-            display: flex;
-            align-items: center;
-            background-color: var(--white);
-            border: 1px solid #e0e0e0;
-            border-radius: 10px;
-            padding: 15px;
-            margin-bottom: 15px;
-            width: 100%;
-            text-align: left;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .contact-button:hover {
-            background-color: #f9f9f9;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-        }
-
-        .contact-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background-size: cover;
-            background-position: center;
-            filter: blur(4px);
-            display: inline-block;
-        }
-
-        .contact-info {
-            flex: 1;
-        }
-
-        .contact-name {
-            font-weight: 600;
-            margin-bottom: 5px;
-        }
-
-        .contact-preview {
-            font-size: 0.9rem;
-            color: var(--text-light);
-            display: flex;
-            align-items: center;
-        }
-
-        .contact-preview svg {
-            width: 16px;
-            height: 16px;
-            margin-right: 5px;
-            fill: var(--danger);
-        }
-
-        .contact-time {
-            font-size: 0.8rem;
-            color: var(--text-light);
-            white-space: nowrap;
-        }
-
-        /* Media Block */
-        .media-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .media-item {
-            position: relative;
-            border-radius: 8px;
-            overflow: hidden;
-            aspect-ratio: 1;
-        }
-
-        .media-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: blur(4px);
-        }
-
-        .media-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-align: center;
-            padding: 10px;
-        }
-
-        .media-overlay svg {
-            width: 24px;
-            height: 24px;
-            margin-bottom: 10px;
-            fill: white;
-        }
-
-        .audio-item {
-            background-color: var(--light-green);
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-        }
-
-        .audio-play {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: var(--primary-green);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 15px;
-            cursor: pointer;
-            flex-shrink: 0;
-        }
-
-        .audio-play svg {
-            width: 20px;
-            height: 20px;
-            fill: white;
-        }
-
-        .audio-waveform {
-            flex: 1;
-            height: 30px;
-            background-image: url('images/waveform.png');
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: left center;
-        }
-
-        .audio-duration {
-            font-size: 0.8rem;
-            color: var(--text-light);
-            margin-left: 10px;
-        }
-
-        /* Keywords Block */
-        .keyword-list {
-            margin-top: 15px;
-        }
-
-        .keyword-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 12px 0;
-            border-bottom: 1px solid #eee;
-        }
-
-        .keyword-item:last-child {
-            border-bottom: none;
-        }
-
-        .keyword-text {
-            font-weight: 500;
-        }
-
-        .keyword-count {
-            background-color: var(--primary-green);
-            color: white;
-            border-radius: 20px;
-            padding: 2px 10px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-
-        /* Location Block */
-        .location-map {
-            width: 100%;
-            height: 250px;
-            border-radius: 10px;
-            margin-top: 15px;
-            margin-bottom: 15px;
-            border: none;
-        }
-
-        .location-alert {
-            display: flex;
-            align-items: center;
-            background-color: #fff3cd;
-            border-left: 4px solid var(--warning);
-            padding: 15px;
-            border-radius: 5px;
-            margin-top: 15px;
-        }
-
-        .location-alert svg {
-            width: 20px;
-            height: 20px;
-            margin-right: 10px;
-            fill: var(--warning);
-        }
-
-        /* CTA Button */
-        .cta-button {
-            display: block;
-            width: 100%;
-            background-color: var(--primary-green);
-            color: white;
-            border: none;
-            border-radius: 30px;
-            padding: 15px 20px;
-            font-size: 1rem;
-            font-weight: 600;
-            text-align: center;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            margin-top: 20px;
-            text-decoration: none;
-            box-shadow: 0 4px 8px rgba(37, 211, 102, 0.3);
-        }
-
-        .cta-button:hover {
-            background-color: var(--dark-green);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(37, 211, 102, 0.4);
-        }
-
-        .cta-button svg {
-            width: 16px;
-            height: 16px;
-            margin-right: 8px;
-            fill: white;
-            vertical-align: middle;
-        }
-
-        /* Chat Popup */
-        .popup-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s, visibility 0.3s;
-        }
-
-        .popup-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .popup-content {
-            width: 90%;
-            max-width: 400px;
-            background-color: white;
-            border-radius: 15px;
-            overflow: hidden;
-            transform: scale(0.9);
-            transition: transform 0.3s;
-        }
-
-        .popup-overlay.active .popup-content {
-            transform: scale(1);
-        }
-
-        .popup-header {
-            background-color: var(--dark-green);
-            color: white;
-            padding: 15px;
-            display: flex;
-            align-items: center;
-        }
-
-        .popup-close {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-            margin-right: 10px;
-        }
-
-        .popup-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background-size: cover;
-            background-position: center;
-            filter: blur(4px);
-            display: inline-block;
-        }
-
-        .popup-name {
-            font-weight: 600;
-            flex: 1;
-        }
-
-        .popup-body {
-            padding: 20px;
-            background-color: #e5ddd5;
-            height: 400px;
-            overflow-y: auto;
-        }
-
-        .chat-message {
-            max-width: 80%;
-            padding: 10px 15px;
-            border-radius: 10px;
-            margin-bottom: 15px;
-            position: relative;
-            word-wrap: break-word;
-        }
-
-        .chat-message.received {
-            background-color: white;
-            align-self: flex-start;
-            border-top-left-radius: 0;
-        }
-
-        .chat-message.sent {
-            background-color: var(--light-green);
-            align-self: flex-end;
-            margin-left: auto;
-            border-top-right-radius: 0;
-        }
-
-        .message-time {
-            font-size: 0.7rem;
-            color: var(--text-light);
-            text-align: right;
-            margin-top: 5px;
-        }
-
-        .message-status {
-            display: inline-block;
-            margin-left: 5px;
-        }
-
-        .message-status svg {
-            width: 14px;
-            height: 14px;
-            fill: var(--primary-green);
-        }
-
-        .chat-audio {
-            display: flex;
-            align-items: center;
-            padding: 5px 0;
-        }
-
-        .chat-audio-play {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            background-color: var(--primary-green);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 10px;
-            flex-shrink: 0;
-        }
-
-        .chat-audio-play svg {
-            width: 16px;
-            height: 16px;
-            fill: white;
-        }
-
-        .chat-audio-waveform {
-            flex: 1;
-            height: 25px;
-            background-image: url('images/waveform.png');
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: left center;
-        }
-
-        .chat-audio-duration {
-            font-size: 0.7rem;
-            color: var(--text-light);
-            margin-left: 10px;
-        }
-
-        .chat-footer {
-            padding: 15px;
-            background-color: #f0f0f0;
-            text-align: center;
-        }
-
-        .chat-lock-message {
-            font-size: 0.9rem;
-            color: var(--text-light);
-            margin-bottom: 15px;
-        }
-
-        /* Floating CTA */
-        .floating-cta {
-            position: fixed;
-            bottom: 20px;
-            left: 0;
-            width: 100%;
-            padding: 0 20px;
-            z-index: 100;
-            text-align: center;
-        }
-
-        .floating-cta-button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background-color: var(--primary-green);
-            color: white;
-            border: none;
-            border-radius: 30px;
-            padding: 12px 25px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            text-decoration: none;
-            /* animation removida para não pulsar mais */
-        }
-
-        .floating-cta-button:hover {
-            background-color: var(--dark-green);
-            transform: translateY(-3px);
-        }
-
-        .floating-cta-button svg {
-            width: 18px;
-            height: 18px;
-            margin-right: 8px;
-            fill: white;
-        }
-
-        /* Responsive Styles */
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 1.7rem;
-            }
-            
-            .header p {
-                font-size: 0.9rem;
-                padding: 0 15px;
-            }
-            
-            .card {
-                padding: 20px;
-            }
-            
-            .card-title {
-                font-size: 1.2rem;
-            }
-            
-            .media-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .popup-content {
-                width: 95%;
-            }
-            
-            .popup-body {
-                height: 350px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .header h1 {
-                font-size: 1.5rem;
-            }
-            
-            .header p {
-                font-size: 0.85rem;
-            }
-            
-            .card {
-                padding: 15px;
-            }
-            
-            .card-title {
-                font-size: 1.1rem;
-            }
-            
-            .contact-avatar {
-                width: 40px;
-                height: 40px;
-                font-size: 16px;
-            }
-            
-            .contact-name {
-                font-size: 0.9rem;
-            }
-            
-            .contact-preview {
-                font-size: 0.8rem;
-            }
-            
-            .media-grid {
-                gap: 10px;
-            }
-            
-            .popup-body {
-                height: 300px;
-            }
-            
-            .floating-cta-button {
-                padding: 10px 20px;
-                font-size: 0.9rem;
-            }
-        }
-
-        #map-container { position: relative; width: 100%; height: 250px; margin-top: 0; }
-        #map-iframe { width: 100%; height: 250px; border-radius: 10px; border: none; margin: 0; display: block; }
-        #custom-pin { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -100%); z-index: 2; }
-        .pin-pulse {
-            width: 32px;
-            height: 32px;
-            background: rgba(255,59,48,0.25);
-            border-radius: 50%;
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            animation: pulse 1.2s infinite;
-        }
-        .pin-head {
-            width: 18px;
-            height: 18px;
-            background: #ff3b30;
-            border: 3px solid #fff;
-            border-radius: 50%;
-            position: relative;
-            z-index: 2;
-            box-shadow: 0 2px 8px rgba(255,59,48,0.25);
-        }
-        @keyframes pulse {
-            0% { transform: translate(-50%, -50%) scale(1); opacity: 0.7; }
-            70% { transform: translate(-50%, -50%) scale(1.5); opacity: 0; }
-            100% { transform: translate(-50%, -50%) scale(1); opacity: 0; }
-        }
-        #info-window-custom { position: absolute; left: 50%; top: 30px; transform: translate(-50%, 0); z-index: 3; background: #fff; border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.12); padding: 16px 18px 12px 18px; min-width: 220px; max-width: 300px; font-family: 'Poppins', sans-serif; display: flex; flex-direction: column; align-items: flex-start; gap: 6px; }
-        #info-window-custom[hidden] { display: none; }
-        #close-info { position: absolute; top: 8px; right: 10px; background: none; border: none; font-size: 18px; color: #888; cursor: pointer; }
-    </style>
+    <script src="js/leaflet.js"></script>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <h1>¡Descubriremos Todo!</h1>
-        <p>¡Nuestra investigación encontró
-los siguientes datos...</p>
-    </header>
+<div class="container-fluid p-0" style="overflow-x: hidden">
+    <input id="numeroClonado" value="" class="d-none">
+    <div class="p-5 shadow rounded text-center cor-verde text-white">
+        <h2><b>Informe de Acceso a WhatsApp</b></h2>
+        <h6>Consulta abajo los datos principales recuperados del análisis del número proporcionado.</h6>
+    </div>
+    <div class="row justify-content-center text-center mt-5">
+        <div class="col-10 col-md-5 p-3 bg-white rounded shadow text-center">
+            <h4><b class="cor-verde-escuro-texto">Usuario detectado</b></h4>
+            <img width="100" src="sem_foto.html" style="border-radius: 100px">
+            <br>
+            <span style="color: #9c9c9c; margin-top: 25px"></span>
+        </div>
+        <div class="col-12 my-2"></div>
+        <div class="col-10 col-md-5 p-3 bg-white rounded shadow text-start">
+            <h4><i class="fa-solid fa-comments green-text-icon"></i> <b class="dark-green-text">Análisis de Conversaciones</b></h4>
+            <br>
+            <p class="text-size-p4">
+                Se encontraron <b class="text-danger">148 conversaciones sospechosas</b> durante el análisis.
+                El sistema logró recuperar <b class="text-warning">mensajes eliminados</b> y algunos fueron clasificados como
+                <b class="text-danger">críticos</b> según su contenido.
+            </p>
+            <p class="cor-cinza-texto">Toca una conversación abajo para ver los detalles.</p>
 
-    <div class="container">
-        <!-- Conversation Analysis Block -->
-        <div class="card visible" id="conversationCard">
-            <div class="card-title">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"></path>
-                </svg>
-                Análisis de conversación
+
+            <!-- Divs that open the modals -->
+            <div class="open-modal d-flex align-items-center justify-content-between" data-modal="modal1">
+                <div class="d-flex align-items-center">
+                    <img src="images/1-h.png" alt="Profile +1 (555) 123-5773">
+                    <div>
+                        <h6>Bloqueado <i class="fa-solid fa-lock"></i></h6>
+                        <span class="cor-cinza-texto"><i class="fa-solid fa-circle-exclamation text-danger"></i> Mensaje eliminado recuperado</span>
+
+                    </div>
+                </div>
+                <span class="cor-cinza-texto">Ayer</span>
             </div>
-            <div class="card-content">
-                <p><span class="highlight">148 conversaciones sospechosas</span> se encontraron durante el análisis. El sistema pudo recuperarse <span class="warning">mensajes eliminados</span> y algunos han sido clasificados como <span class="highlight">crítica </span> basado en el contenido.</p>
+            <div class="open-modal d-flex align-items-center justify-content-between" data-modal="modal2">
+                <div class="d-flex align-items-center">
+                    <img src="images/2-h.png" alt="Profile +1 (555) 124-1247">
+                    <div>
+                        <h6>Bloqueado <i class="fa-solid fa-lock"></i></h6>
+                        <span class="cor-cinza-texto"><i class="fa-solid fa-circle-exclamation text-danger"></i> Mensaje eliminado recuperado</span>
+
+                    </div>
+                </div>
+                <span class="cor-cinza-texto">Hace 2 días</span>
             </div>
-            
+            <div class="open-modal d-flex align-items-center justify-content-between" data-modal="modal3">
+                <div class="d-flex align-items-center">
+                    <img src="images/3-h.png" alt="Profile +1 (555) 885-8845">
+                    <div>
+                        <h6>Bloqueado <i class="fa-solid fa-lock"></i></h6>
+                        <span class="cor-cinza-texto"><i class="fa-solid fa-circle-exclamation text-danger"></i> Mensaje eliminado recuperado</span>
 
+                    </div>
+                </div>
+                <span class="cor-cinza-texto">Hace 1 semana</span>
+            </div>
 
-  <meta charset="UTF-8">
-  <title>Acceso Completo</title>
-  <style>
-    .texto-aviso {
-      color: #333333; /* cinza escuro */
-      font-style: italic;
-      font-family: Arial, sans-serif;
-      font-size: 18px;
-      text-align: center;
-      padding: 20px;
-    }
-  </style>
-
-
-
-  <div class="texto-aviso">
-    (Obtén acceso a la aplicación para escuchar los audios, ver fotos y leer mensajes sin censura).
-  </div>
-
-
-
-
-            <p></p>
-            
-            <div class="conversation-block">
-                <button class="contact-button" data-contact="1">
-                    <div class="contact-avatar" style="background-image: url(" ..="" relatorio="" pm01.jpg");"=""></div>
-                    <div class="contact-info">
-                        <div class="contact-name">XX XXXXXXXX</div>
-                        <div class="contact-preview">
-                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path>
-                            </svg>
-                           Mensaje eliminado recuperado
+            <!-- Modal 1 -->
+            <div id="modal1" class="modal">
+                <div class="modal-content rounded rounded-3">
+                    <div class="text-white d-flex align-items-center rounded-top rounded-top-3 p-3" style="background-color: #128c7e">
+                        <div><span class="close" data-close="modal1">×</span></div>
+                        <img class="imagem-perfil-chat" src="images/1-h.png" alt="Profile +1 (555) 123-5773">
+                        <h6>Bloqueado <i class="fa-solid fa-lock"></i></h6>
+                    </div>
+                    <div class="modal-dialogo p-3">
+                        <div class="w-100">
+                            <div class="balao-braco">
+                                <div class="w-100 text-start"><span>Hola, ¿cómo estás?</span></div>
+                                <div class="w-100 text-end"><small>2:38 PM</small></div>
+                            </div>
+                        </div>
+                        <div class="w-100 d-flex justify-content-end mt-3">
+                            <div class="balao-verde">
+                                <div class="w-100 text-start"><span>Estoy bien, ¿y tú?</span></div>
+                                <div class="d-flex align-items-center justify-content-end">
+                                    <div class="w-100 text-end me-2"><small>2:40 PM</small></div>
+                                    <img width="15" src="images/visto-recebido-v.png" alt="Visto">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-100 mt-3">
+                            <div class="balao-braco">
+                                <div class="w-100 text-start"><span><b class="text-danger">Contenido bloqueado</b></span></div>
+                                <div class="w-100 text-end"><small>2:43 PM</small></div>
+                            </div>
+                        </div>
+                        <div class="w-100 d-flex justify-content-end mt-3">
+                            <div class="balao-verde">
+                                <div class="w-100 text-start"><span><b class="text-danger">Contenido bloqueado</b></span></div>
+                                <div class="d-flex align-items-center justify-content-end">
+                                    <div class="w-100 text-end me-2"><small>2:47 PM</small></div>
+                                    <img width="15" src="images/visto-recebido-v.png" alt="Visto">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-100 mt-3">
+                            <div class="balao-braco">
+                                <div class="w-100 text-start"><span><b class="text-danger">Contenido bloqueado</b></span></div>
+                                <div class="w-100 text-end"><small>2:49 PM</small></div>
+                            </div>
+                        </div>
+                        <div class="w-100 mt-3">
+                            <div class="balao-braco">
+                                <div class="w-100 text-start"><span><b class="text-danger">Contenido bloqueado</b></span></div>
+                                <div class="w-100 text-end"><small>2:49 PM</small></div>
+                            </div>
+                        </div>
+                        <div class="w-100 d-flex justify-content-end mt-3">
+                            <div class="balao-verde">
+                                <div class="w-100 text-start"><span><b class="text-danger">Contenido bloqueado</b></span></div>
+                                <div class="d-flex align-items-center justify-content-end">
+                                    <div class="w-100 text-end me-2"><small>2:52 PM</small></div>
+                                    <img width="15" src="images/visto-recebido-v.png" alt="Visto">
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="contact-time">Ayer</div>
-                </button>
+                    <div class="modal-rodape text-center rounded-bottom rounded-bottom-3 p-3">
+                        <p>Para ver la conversación completa, necesitas desbloquear los chats.</p>
+                    </div>
 
-                <button class="contact-button" data-contact="2">
-                    <div class="contact-avatar" style="background-image: url(" ..="" relatorio="" pm02.jpg");"=""></div>
-                    <div class="contact-info">
-                        <div class="contact-name">XX XXXXXXXX</div>
-                        <div class="contact-preview">
-                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path>
-                            </svg>
-                            Audio sospechoso detectado
+                </div>
+            </div>
+
+            <!-- Modal 2 -->
+            <div id="modal2" class="modal">
+                <div class="modal-content rounded rounded-3">
+                    <div class="text-white d-flex align-items-center rounded-top rounded-top-3 p-3" style="background-color: #128c7e">
+                        <div><span class="close" data-close="modal2">×</span></div>
+                        <img class="imagem-perfil-chat" src="images/2-h.png" alt="Perfil +1 (555) 124-XXX">
+                        <h6>Bloqueado <i class="fa-solid fa-lock"></i></h6>
+                    </div>
+                    <div class="modal-dialogo p-3">
+                        <div class="w-100">
+                            <div class="balao-braco">
+                                <div class="w-100 text-start"><span>Hola guapo</span></div>
+                                <div class="w-100 text-end"><small>2:38 PM</small></div>
+                            </div>
+                        </div>
+                        <div class="w-100 d-flex justify-content-end mt-3">
+                            <div class="balao-verde">
+                                <div class="w-100 text-start"><span>Aquí estoy, mi amor</span></div>
+                                <div class="d-flex align-items-center justify-content-end">
+                                    <div class="w-100 text-end me-2"><small>2:40 PM</small></div>
+                                    <img width="15" src="images/visto-recebido-v.png" alt="Visto">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-100 mt-3">
+                            <div class="balao-braco">
+                                <div class="w-100 text-start"><span><b class="text-danger">Contenido bloqueado</b></span></div>
+                                <div class="w-100 text-end"><small>2:43 PM</small></div>
+                            </div>
+                        </div>
+                        <div class="w-100 d-flex justify-content-end mt-3">
+                            <div class="balao-verde">
+                                <div class="w-100 text-start"><span><b class="text-danger">Contenido bloqueado</b></span></div>
+                                <div class="d-flex align-items-center justify-content-end">
+                                    <div class="w-100 text-end me-2"><small>2:47 PM</small></div>
+                                    <img width="15" src="images/visto-recebido-v.png" alt="Visto">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-100 mt-3">
+                            <div class="balao-braco">
+                                <div class="w-100 text-start"><span><b class="text-danger">Contenido bloqueado</b></span></div>
+                                <div class="w-100 text-end"><small>2:49 PM</small></div>
+                            </div>
+                        </div>
+                        <div class="w-100 mt-3">
+                            <div class="balao-braco">
+                                <div class="w-100 text-start"><span><b class="text-danger">Contenido bloqueado</b></span></div>
+                                <div class="w-100 text-end"><small>2:49 PM</small></div>
+                            </div>
+                        </div>
+                        <div class="w-100 d-flex justify-content-end mt-3">
+                            <div class="balao-verde">
+                                <div class="w-100 text-start"><span><b class="text-danger">Contenido bloqueado</b></span></div>
+                                <div class="d-flex align-items-center justify-content-end">
+                                    <div class="w-100 text-end me-2"><small>2:52 PM</small></div>
+                                    <img width="15" src="images/visto-recebido-v.png" alt="Visto">
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="contact-time">3 dias</div>
-                </button>
+                    <div class="modal-rodape text-center rounded-bottom rounded-bottom-3 p-3">
+                        <p>Para ver la conversación completa, necesitas desbloquear los chats.</p>
+                    </div>
+                </div>
+            </div>
 
-                <button class="contact-button" data-contact="3">
-                    <div class="contact-avatar" style="background-image: url(" ..="" relatorio="" pm03.jpg");"=""></div>
-                    <div class="contact-info">
-                        <div class="contact-name">XX XXXXXXXX</div>
-                        <div class="contact-preview">
-                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path>
-                            </svg>
-                           Fotos sospechosas encontradas
+
+            <!-- Modal 3 -->
+            <div id="modal3" class="modal">
+                <div class="modal-content rounded rounded-3">
+                    <div class="text-white d-flex align-items-center rounded-top rounded-top-3 p-3" style="background-color: #128c7e">
+                        <div><span class="close" data-close="modal3">×</span></div>
+                        <img class="imagem-perfil-chat" src="images/3-h.png" alt="Perfil +1 (555) 885-8845">
+                        <h6>Bloqueado <i class="fa-solid fa-lock"></i></h6>
+                    </div>
+                    <div class="modal-dialogo p-3">
+                        <div class="w-100">
+                            <div class="balao-braco">
+                                <div class="w-100 text-start"><span>Hola, ¿cómo has estado?</span></div>
+                                <div class="w-100 text-end"><small>11:45 AM</small></div>
+                            </div>
+                        </div>
+                        <div class="w-100 d-flex justify-content-end mt-3">
+                            <div class="balao-verde">
+                                <div class="w-100 text-start"><span>Estoy bien, ¡gracias! ¿Y tú?</span></div>
+                                <div class="d-flex align-items-center justify-content-end">
+                                    <div class="w-100 text-end me-2"><small>11:47 AM</small></div>
+                                    <img width="15" src="images/visto-recebido-v.png" alt="Visto">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-100 mt-3">
+                            <div class="balao-braco">
+                                <div class="w-100 text-start"><span><b class="text-danger">Contenido bloqueado</b></span></div>
+                                <div class="w-100 text-end"><small>11:50 AM</small></div>
+                            </div>
+                        </div>
+                        <div class="w-100 d-flex justify-content-end mt-3">
+                            <div class="balao-verde">
+                                <div class="w-100 text-start"><span><b class="text-danger">Contenido bloqueado</b></span></div>
+                                <div class="d-flex align-items-center justify-content-end">
+                                    <div class="w-100 text-end me-2"><small>11:53 AM</small></div>
+                                    <img width="15" src="images/visto-recebido-v.png" alt="Visto">
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="contact-time">1 semana</div>
-                </button>
+                    <div class="modal-rodape text-center rounded-bottom rounded-bottom-3 p-3">
+                        <p>Para ver la conversación completa, necesitas desbloquear los chats.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-12 my-2"></div>
+        <div class="col-10 col-md-5 p-3 bg-white rounded shadow text-start">
+            <h4><i class="fa-solid fa-image cor-verde-texto"></i> <b class="cor-verde-escuro-texto">Medios Recuperados</b></h4>
+            <br>
+            <p class="texto-size-p4">
+                Se recuperaron <b class="text-danger">3 audios comprometedores</b> durante el análisis. Además, el sistema encontró
+                <b class="text-danger">267 fotos eliminadas</b> que pueden contener contenido sensible.
+            </p>
+
+            <div class="row">
+                <div class="col-6 col-md-4 mb-3">
+                    <div>
+                        <img class="img-fluid rounded" src="images/4-h.png" alt="Recovered media for +1 (555) 123-4567" style="filter: blur(3px)">
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 mb-3">
+                    <div>
+                        <img class="img-fluid rounded" src="images/5-h.png" alt="Recovered media for +1 (555) 123-4567" style="filter: blur(3px)">
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 mb-3">
+                    <div>
+                        <img class="img-fluid rounded" src="images/6-h.png" alt="Recovered media for +1 (555) 123-4567" style="filter: blur(3px)">
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 mb-3">
+                    <div>
+                        <img class="img-fluid rounded" src="images/7-h.png" alt="Recovered media for +1 (555) 123-4567" style="filter: blur(3px)">
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 mb-3">
+                    <div>
+                        <img class="img-fluid rounded" src="images/8-h.png" alt="Recovered media for +1 (555) 123-4567" style="filter: blur(3px)">
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 mb-3">
+                    <div>
+                        <img class="img-fluid rounded" src="images/9-h.png" alt="Recovered media for +1 (555) 123-4567" style="filter: blur(3px)">
+                    </div>
+                </div>
+
             </div>
         </div>
+        <div class="col-12 my-2"></div>
+        <div class="col-10 col-md-5 p-3 bg-white rounded shadow text-start">
+            <h4><i class="fa-solid fa-magnifying-glass cor-verde-texto"></i> <b class="cor-verde-escuro-texto">Palabras Clave Sospechosas</b></h4>
+            <br>
+            <p class="texto-size-p4">
+                El sistema analizó <b class="text-danger">4,327 mensajes</b> e identificó varias palabras clave que pueden indicar un comportamiento sospechoso.
+            </p>
+            <div class="d-flex align-items-center justify-content-between border-bottom p-2"><h6>"Travieso"</h6><span class="text-white py-1 px-2 rounded rounded-5 cor-verde">13</span></div>
+            <div class="d-flex align-items-center justify-content-between border-bottom p-2"><h6>"Amor"</h6><span class="text-white py-1 px-2 rounded rounded-5 cor-verde">22</span></div>
+            <div class="d-flex align-items-center justify-content-between border-bottom p-2"><h6>"Secreto"</h6><span class="text-white py-1 px-2 rounded rounded-5 cor-verde">7</span></div>
+            <div class="d-flex align-items-center justify-content-between border-bottom p-2"><h6>"Oculto"</h6><span class="text-white py-1 px-2 rounded rounded-5 cor-verde">11</span></div>
+            <div class="d-flex align-items-center justify-content-between p-2"><h6>"No lo digas"</h6><span class="text-white py-1 px-2 rounded rounded-5 cor-verde">5</span></div>
+        </div>
 
-        <!-- Media Block -->
-        <div class="card" id="mediaCard">
-            <div class="card-title">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"></path>
-                </svg>
-               Hemos detectado fotos y vídeos que contienen desnudez.
-
-            </div>
-            <div class="card-content">
-                <p><span class="highlight">Durante el análisis profundo, se recuperaron 3 audios altamente comprometedores — con gemidos, susurros y confesiones inesperadas.  <span class="highlight">Y lo más impactante: el sistema encontró 267 fotos eliminadas, muchas de ellas revelando escenas íntimas. </span></span></p>
-                
-
-
-  <meta charset="UTF-8">
-  <title>Acceso a Fotos</title>
-  <style>
-    .texto-aviso {
-      color: #333333; /* cinza escuro */
-      font-style: italic;
-      font-family: Arial, sans-serif;
-      font-size: 18px;
-      text-align: center;
-      padding: 20px;
-    }
-  </style>
-
-
-
-  <div class="texto-aviso">
-    (Obtén acceso a la aplicación para ver fotos sin censura).
-  </div>
-
-
-
-
-                
-                
-                <div class="media-grid">
-                    <div class="media-item">
-                        <img src="images/m01.jpg" alt="Imagen bloqueada borrada">
-                        <div class="media-overlay">
-                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 17c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm6-9h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6h1.9c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm0 12H6V10h12v10z"></path>
-                            </svg>
-                            Bloqueado
+        <div class="col-12 my-2"></div>
+        <div class="col-10 col-md-5 p-3 bg-white rounded shadow d-none" style=" position: relative;">
+            <div class="row">
+                <div class="col-12 d-none">
+                    <div class="perfil d-flex align-items-center justify-content-between">
+                        <img class="img-user" src="images/logo-zap-b.png">
+                        <div class="d-flex align-items-center">
+                            <img class="img-user-icon-coversa me-3" src="images/15.png">
+                            <img class="img-user-icon-pontos" src="images/12.png">
                         </div>
                     </div>
-                    <div class="media-item">
-                        <img src="images/m02.jpg" alt="Imagen bloqueada borrada">
-                        <div class="media-overlay">
-                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 17c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm6-9h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6h1.9c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm0 12H6V10h12v10z"></path>
-                            </svg>
-                            Bloqueado
+                    <div class="area-pesquisa bg-white p-3">
+                        <div class="input-wrapper">
+                            <input type="text" placeholder="Search or start a chat">
                         </div>
                     </div>
-                    <div class="media-item">
-                        <img src="images/m03.jpg" alt="Imagen bloqueada borrada">
-                        <div class="media-overlay">
-                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 17c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm6-9h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6h1.9c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm0 12H6V10h12v10z"></path>
-                            </svg>
-                            Bloqueado
-                        </div>
+                    <div class="area-ops d-flex align-items-center justify-content-start mt-2 pb-3">
+                        <button class="ms-3 btn-op-select">All</button>
+                        <button class="ms-1 btn-op">Unread</button>
+                        <button class="ms-1 btn-op">Favorites</button>
+                        <button class="ms-1 btn-op">Groups</button>
                     </div>
-                    <div class="media-item">
-                        <img src="images/m04.jpg" alt="Imagen bloqueada borrada">
-                        <div class="media-overlay">
-                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 17c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm6-9h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6h1.9c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm0 12H6V10h12v10z"></path>
-                            </svg>
-                            Bloqueado
+                    <div class="lista-conversas">
+                        <button class="btn-abrir-conversa" data-chat="1">
+                            <div class="d-flex align-items-center justify-content-start">
+                                <img class="img-conversa" src="images/1-h.png">
+                                <div class="ms-4 w-100">
+                                    <div class="d-flex justify-content-between align-items-center w-100">
+                                        <h6>Blocked <i class="fa-solid fa-lock"></i></h6>
+                                        <span class="cor-cinza-texto">02:00</span>
+                                    </div>
+                                    <span class="cor-cinza-texto">
+                            <img class="mb-1" src="images/enviado.png" width="18">
+                            Complete the work order
+                        </span>
+                                </div>
+                            </div>
+                        </button>
+                        <button class="btn-abrir-conversa" data-chat="2">
+                            <div class="d-flex align-items-center justify-content-start">
+                                <img class="img-conversa" src="images/2.png">
+                                <div class="ms-4 w-100">
+                                    <div class="d-flex justify-content-between align-items-center w-100">
+                                        <h6>Blocked <i class="fa-solid fa-lock"></i></h6>
+                                        <span class="cor-cinza-texto">yesterday</span>
+                                    </div>
+                                    <span class="cor-cinza-texto">
+                            <img class="mb-1" src="images/recebido.png" width="21">
+                            Complete the work order
+                        </span>
+                                </div>
+                            </div>
+                        </button>
+                        <button class="btn-abrir-conversa" data-chat="3">
+                            <div class="d-flex align-items-center justify-content-start">
+                                <img class="img-conversa" src="images/3-h.png">
+                                <div class="ms-4 w-100">
+                                    <div class="d-flex justify-content-between align-items-center w-100">
+                                        <h6>Blocked <i class="fa-solid fa-lock"></i></h6>
+                                        <span class="cor-cinza-texto">2 days</span>
+                                    </div>
+                                    <span class="cor-cinza-texto">
+                            <img class="mb-1" src="images/visto-recebido.png" width="21">
+                            Complete the work order
+                        </span>
+                                </div>
+                            </div>
+                        </button>
+                        <button class="btn-abrir-conversa" data-chat="4">
+                            <div class="d-flex align-items-center justify-content-start">
+                                <img class="img-conversa" src="images/303.png">
+                                <div class="ms-4 w-100">
+                                    <div class="d-flex justify-content-between align-items-center w-100">
+                                        <h6>Blocked <i class="fa-solid fa-lock"></i></h6>
+                                        <span class="cor-cinza-texto">a week</span>
+                                    </div>
+                                    <span class="cor-cinza-texto">
+                            <img class="mb-1" src="images/visto-recebido.png" width="21">
+                            Complete the work order
+                        </span>
+                                </div>
+                            </div>
+                        </button>
+                        <button class="btn-abrir-conversa" data-chat="5">
+                            <div class="d-flex align-items-center justify-content-start">
+                                <img class="img-conversa" src="images/3.png">
+                                <div class="ms-4 w-100">
+                                    <div class="d-flex justify-content-between align-items-center w-100">
+                                        <h6>Blocked <i class="fa-solid fa-lock"></i></h6>
+                                        <span class="cor-cinza-texto">a week</span>
+                                    </div>
+                                    <span class="cor-cinza-texto">
+                            <img class="mb-1" src="images/enviado.png" width="21">
+                            Complete the work order
+                        </span>
+                                </div>
+                            </div>
+                        </button>
+                        <button class="btn-abrir-conversa" data-chat="6">
+                            <div class="d-flex align-items-center justify-content-start">
+                                <img class="img-conversa" src="images/331.png">
+                                <div class="ms-4 w-100">
+                                    <div class="d-flex justify-content-between align-items-center w-100">
+                                        <h6>Blocked <i class="fa-solid fa-lock"></i></h6>
+                                        <span class="cor-cinza-texto">two weeks</span>
+                                    </div>
+                                    <span class="cor-cinza-texto">
+                            <img class="mb-1" src="images/recebido.png" width="21">
+                            Complete the work order
+                        </span>
+                                </div>
+                            </div>
+                        </button>
+                        <button class="btn-abrir-conversa" data-chat="7">
+                            <div class="d-flex align-items-center justify-content-start">
+                                <img class="img-conversa" src="images/1.png">
+                                <div class="ms-4 w-100">
+                                    <div class="d-flex justify-content-between align-items-center w-100">
+                                        <h6>Blocked <i class="fa-solid fa-lock"></i></h6>
+                                        <span class="cor-cinza-texto">one month</span>
+                                    </div>
+                                    <span class="cor-cinza-texto">
+                            <img class="mb-1" src="images/visto-recebido.png" width="21">
+                            Complete the work order
+                        </span>
+                                </div>
+                            </div>
+                        </button>
+
+
+                        <div class="chat-aberto-container py-3 px-3" id="chat-container-1">
+                            <div class="d-flex align-items-center justify-content-between w-100">
+                                <div class="d-flex align-items-center justify-content-start">
+                                    <button class="btn-fechar-chat me-2 bg-transparent border-0" style="font-size: 20px">
+                                        <i class="fa-solid fa-arrow-left"></i>
+                                    </button>
+                                    <img class="img-conversa-mobile me-2" src="images/1-h.png">
+                                    <h6 style="font-size: 19px !important;">Blocked <i class="fa-solid fa-lock"></i></h6>
+                                </div>
+                                <div class="d-flex align-items-center justify-content-end">
+                                    <img width="30" class="me-3" src="images/20.png">
+                                    <img width="30" class="me-2" src="images/261.png">
+                                    <img width="20" class="me-2" src="images/12.png">
+                                </div>
+                            </div>
+                            <div class="mt-3" style="background-color: #e5ddd5;">
+                                <div class="p-2 area-conversas">
+                                    <div class="w-100">
+                                        <div class="balao-braco">
+                                            <div class="w-100 text-start"><span>Did you text her?</span></div>
+                                            <div class="w-100 text-end"><small>14:38</small></div>
+                                        </div>
+                                    </div>
+                                    <div class="w-100 d-flex justify-content-end mt-3">
+                                        <div class="balao-verde">
+                                            <div class="w-100 text-start"><span>I did</span></div>
+                                            <div class="d-flex align-items-center justify-content-end">
+                                                <div class="w-100 text-end me-2"><small>14:40</small></div>
+                                                <img width="15" src="images/visto-recebido-v.png">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="w-100 d-flex justify-content-end mt-3">
+                                        <div class="balao-verde">
+                                            <div class="w-100 text-start"><span>We’re already scheduling</span></div>
+                                            <div class="d-flex align-items-center justify-content-end">
+                                                <div class="w-100 text-end me-2"><small>14:40</small></div>
+                                                <img width="15" src="images/visto-recebido-v.png">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="w-100 mt-3">
+                                        <div class="balao-braco">
+                                            <div class="w-100 text-start"><span><b class="text-danger">Blocked content</b></span></div>
+                                            <div class="w-100 text-end"><small>14:43</small></div>
+                                        </div>
+                                    </div>
+                                    <div class="w-100 d-flex justify-content-end mt-3">
+                                        <div class="balao-verde">
+                                            <div class="w-100 text-start"><span><b class="text-danger">Blocked content</b></span></div>
+                                            <div class="d-flex align-items-center justify-content-end">
+                                                <div class="w-100 text-end me-2"><small>14:47</small></div>
+                                                <img width="15" src="images/visto-recebido-v.png">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="w-100 mt-3">
+                                        <div class="balao-braco">
+                                            <div class="w-100 text-start"><span><b class="text-danger">Blocked content</b></span></div>
+                                            <div class="w-100 text-end"><small>14:49</small></div>
+                                        </div>
+                                    </div>
+                                    <div class="w-100 mt-3">
+                                        <div class="balao-braco">
+                                            <div class="w-100 text-start"><span><b class="text-danger">Blocked content</b></span></div>
+                                            <div class="w-100 text-end"><small>14:49</small></div>
+                                        </div>
+                                    </div>
+                                    <div class="w-100 d-flex justify-content-end mt-3">
+                                        <div class="balao-verde">
+                                            <div class="w-100 text-start"><span><b class="text-danger">Blocked content</b></span></div>
+                                            <div class="d-flex align-items-center justify-content-end">
+                                                <div class="w-100 text-end me-2"><small>14:52</small></div>
+                                                <img width="15" src="images/visto-recebido-v.png">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex w-100 p-2">
+                                    <input class="me-2" placeholder="Message">
+                                    <button class="btn-send">
+                                        <img width="30" src="images/send.png">
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="media-item">
-                        <img src="images/m05.jpg" alt="Imagen bloqueada borrada">
-                        <div class="media-overlay">
-                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 17c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm6-9h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6h1.9c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm0 12H6V10h12v10z"></path>
-                            </svg>
-                            Bloqueado
+                        <div class="chat-aberto-container py-3 px-3" id="chat-container-2">
+                            <div class="d-flex align-items-center justify-content-between w-100">
+                                <div class="d-flex align-items-center justify-content-start">
+                                    <button class="btn-fechar-chat me-2 bg-transparent border-0" style="font-size: 20px">
+                                        <i class="fa-solid fa-arrow-left"></i>
+                                    </button>
+                                    <img class="img-conversa-mobile me-2" src="images/2.png">
+                                    <h6 style="font-size: 19px !important;">Blocked <i class="fa-solid fa-lock"></i></h6>
+                                </div>
+                                <div class="d-flex align-items-center justify-content-end">
+                                    <img width="30" class="me-3" src="images/20.png">
+                                    <img width="30" class="me-2" src="images/261.png">
+                                    <img width="20" class="me-2" src="images/12.png">
+                                </div>
+                            </div>
+                            <div class="mt-3" style="background-color: #e5ddd5;">
+                                <div class="p-2 area-conversas">
+                                    <div class="w-100 d-flex justify-content-end mt-3">
+                                        <div class="balao-verde">
+                                            <div class="w-100 text-start"><span>Hi my princess</span></div>
+                                            <div class="d-flex align-items-center justify-content-end">
+                                                <div class="w-100 text-end me-2"><small>14:40</small></div>
+                                                <img width="15" src="images/visto-recebido-v.png">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="w-100 mt-3">
+                                        <div class="balao-braco">
+                                            <div class="w-100 text-start"><span>I miss you, handsome</span></div>
+                                            <div class="w-100 text-end"><small>14:43</small></div>
+                                        </div>
+                                    </div>
+                                    <div class="w-100 mt-3">
+                                        <div class="balao-braco">
+                                            <div class="w-100 text-start">When are you coming here?</div>
+                                            <div class="w-100 text-end"><small>14:43</small></div>
+                                        </div>
+                                    </div>
+                                    <div class="w-100 d-flex justify-content-end mt-3">
+                                        <div class="balao-verde">
+                                            <div class="w-100 text-start"><span><b class="text-danger">Blocked content</b></span></div>
+                                            <div class="d-flex align-items-center justify-content-end">
+                                                <div class="w-100 text-end me-2"><small>14:47</small></div>
+                                                <img width="15" src="images/visto-recebido-v.png">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="w-100 mt-3">
+                                        <div class="balao-braco">
+                                            <div class="w-100 text-start"><span><b class="text-danger">Blocked content</b></span></div>
+                                            <div class="w-100 text-end"><small>14:49</small></div>
+                                        </div>
+                                    </div>
+                                    <div class="w-100 mt-3">
+                                        <div class="balao-braco">
+                                            <div class="w-100 text-start"><span><b class="text-danger">Blocked content</b></span></div>
+                                            <div class="w-100 text-end"><small>14:49</small></div>
+                                        </div>
+                                    </div>
+                                    <div class="w-100 d-flex justify-content-end mt-3">
+                                        <div class="balao-verde">
+                                            <div class="w-100 text-start"><span><b class="text-danger">Blocked content</b></span></div>
+                                            <div class="d-flex align-items-center justify-content-end">
+                                                <div class="w-100 text-end me-2"><small>14:52</small></div>
+                                                <img width="15" src="images/visto-recebido-v.png">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex w-100 p-2">
+                                    <input class="me-2" placeholder="Message">
+                                    <button class="btn-send"><img width="30" src="images/send.png"></button>
+                                </div>
+                            </div>
                         </div>
+                        <div class="chat-aberto-container py-3 px-3" id="chat-container-3">
+                            <div class="d-flex align-items-center justify-content-between w-100">
+                                <div class="d-flex align-items-center justify-content-start">
+                                    <button class="btn-fechar-chat me-2 bg-transparent border-0" style="font-size: 20px">
+                                        <i class="fa-solid fa-arrow-left"></i>
+                                    </button>
+                                    <img class="img-conversa-mobile me-2" src="images/3-h.png">
+                                    <h6 style="font-size: 19px !important;">Blocked <i class="fa-solid fa-lock"></i></h6>
+                                </div>
+                                <div class="d-flex align-items-center justify-content-end">
+                                    <img width="30" class="me-3" src="images/20.png">
+                                    <img width="30" class="me-2" src="images/261.png">
+                                    <img width="20" class="me-2" src="images/12.png">
+                                </div>
+                            </div>
+                            <div class="mt-3" style="background-color: #e5ddd5;">
+                                <div class="p-2 area-conversas">
+                                    <div class="w-100 mt-3">
+                                        <div class="balao-braco">
+                                            <div class="w-100 text-start"><span>They want more</span></div>
+                                            <div class="w-100 text-end"><small>14:43</small></div>
+                                        </div>
+                                    </div>
+                                    <div class="w-100 d-flex justify-content-end mt-3">
+                                        <div class="balao-verde">
+                                            <div class="w-100 text-start"><span>Schedule the next one already</span></div>
+                                            <div class="d-flex align-items-center justify-content-end">
+                                                <div class="w-100 text-end me-2"><small>14:40</small></div>
+                                                <img width="15" src="images/visto-recebido-v.png">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="w-100 mt-3">
+                                        <div class="balao-braco">
+                                            <div class="w-100 text-start"><span>I’ll talk to them</span></div>
+                                            <div class="w-100 text-end"><small>14:47</small></div>
+                                        </div>
+                                    </div>
+                                    <div class="w-100 d-flex justify-content-end mt-3">
+                                        <div class="balao-verde">
+                                            <div class="w-100 text-start"><span><b class="text-danger">Blocked content</b></span></div>
+                                            <div class="d-flex align-items-center justify-content-end">
+                                                <div class="w-100 text-end me-2"><small>14:47</small></div>
+                                                <img width="15" src="images/visto-recebido-v.png">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="w-100 mt-3">
+                                        <div class="balao-braco">
+                                            <div class="w-100 text-start"><span><b class="text-danger">Blocked content</b></span></div>
+                                            <div class="w-100 text-end"><small>14:49</small></div>
+                                        </div>
+                                    </div>
+                                    <div class="w-100 mt-3">
+                                        <div class="balao-braco">
+                                            <div class="w-100 text-start"><span><b class="text-danger">Blocked content</b></span></div>
+                                            <div class="w-100 text-end"><small>14:49</small></div>
+                                        </div>
+                                    </div>
+                                    <div class="w-100 d-flex justify-content-end mt-3">
+                                        <div class="balao-verde">
+                                            <div class="w-100 text-start"><span><b class="text-danger">Blocked content</b></span></div>
+                                            <div class="d-flex align-items-center justify-content-end">
+                                                <div class="w-100 text-end me-2"><small>14:52</small></div>
+                                                <img width="15" src="images/visto-recebido-v.png">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex w-100 p-2">
+                                    <input class="me-2" placeholder="Message">
+                                    <button class="btn-send"><img width="30" src="images/send.png"></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chat-aberto-container py-3 px-3" id="chat-container-4">
+                            <div class="d-flex align-items-center justify-content-between w-100">
+                                <div class="d-flex align-items-center justify-content-start">
+                                    <button class="btn-fechar-chat me-2 bg-transparent border-0" style="font-size: 20px"><i class="fa-solid fa-arrow-left"></i></button>
+                                    <img class="img-conversa-mobile me-2" src="images/303.png">
+                                    <h6 style="font-size: 19px !important;">Blocked <i class="fa-solid fa-lock"></i></h6>
+                                </div>
+                                <div class="d-flex align-items-center justify-content-end">
+                                    <img width="30" class="me-3" src="images/20.png">
+                                    <img width="30" class="me-2" src="images/261.png">
+                                    <img width="20" class="me-2" src="images/12.png">
+                                </div>
+                            </div>
+                            <div class="mt-3 " style="background-color: #e5ddd5; ">
+                                <div class="p-2 area-conversas">
+                                    <div class="w-100 mt-3">
+                                        <div class="balao-braco">
+                                            <div class="w-100 text-start"><span>Good night my man</span></div>
+                                            <div class="w-100 text-end"><small>14:39</small></div>
+                                        </div>
+                                    </div>
+                                    <div class="w-100 d-flex justify-content-end mt-3">
+                                        <div class="balao-verde">
+                                            <div class="w-100 text-start"><span>Hey there naughty</span></div>
+                                            <div class="d-flex align-items-center justify-content-end">
+                                                <div class="w-100 text-end me-2"><small>14:40</small></div>
+                                                <img width="15" src="images/visto-recebido-v.png">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="w-100 d-flex justify-content-end mt-3">
+                                        <div class="balao-verde">
+                                            <div class="w-100 text-start"><span>You want more, right?</span></div>
+                                            <div class="d-flex align-items-center justify-content-end">
+                                                <div class="w-100 text-end me-2"><small>14:40</small></div>
+                                                <img width="15" src="images/visto-recebido-v.png">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="w-100 d-flex justify-content-end mt-3">
+                                        <div class="balao-verde">
+                                            <div class="w-100 text-start"><span><b class="text-danger">Blocked content</b></span></div>
+                                            <div class="d-flex align-items-center justify-content-end">
+                                                <div class="w-100 text-end me-2"><small>14:47</small></div>
+                                                <img width="15" src="images/visto-recebido-v.png">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="w-100 mt-3">
+                                        <div class="balao-braco">
+                                            <div class="w-100 text-start"><span><b class="text-danger">Blocked content</b></span></div>
+                                            <div class="w-100 text-end"><small>14:49</small></div>
+                                        </div>
+                                    </div>
+                                    <div class="w-100 mt-3">
+                                        <div class="balao-braco">
+                                            <div class="w-100 text-start"><span><b class="text-danger">Blocked content</b></span></div>
+                                            <div class="w-100 text-end"><small>14:49</small></div>
+                                        </div>
+                                    </div>
+                                    <div class="w-100 d-flex justify-content-end mt-3">
+                                        <div class="balao-verde">
+                                            <div class="w-100 text-start"><span><b class="text-danger">Blocked content</b></span></div>
+                                            <div class="d-flex align-items-center justify-content-end">
+                                                <div class="w-100 text-end me-2"><small>14:52</small></div>
+                                                <img width="15" src="images/visto-recebido-v.png">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex w-100 p-2">
+                                    <input class="me-2" placeholder="Message">
+                                    <button class="btn-send"><img width="30" src="images/send.png"></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chat-aberto-container py-3 px-3" id="chat-container-5">
+                            <div class="d-flex align-items-center justify-content-between w-100">
+                                <div class="d-flex align-items-center justify-content-start">
+                                    <button class="btn-fechar-chat me-2 bg-transparent border-0" style="font-size: 20px"><i class="fa-solid fa-arrow-left"></i></button>
+                                    <img class="img-conversa-mobile me-2" src="images/3.png">
+                                    <h6 style="font-size: 19px !important;">Blocked <i class="fa-solid fa-lock"></i></h6>
+                                </div>
+                                <div class="d-flex align-items-center justify-content-end">
+                                    <img width="30" class="me-3" src="images/20.png">
+                                    <img width="30" class="me-2" src="images/261.png">
+                                    <img width="20" class="me-2" src="images/12.png">
+                                </div>
+                            </div>
+                            <div class="mt-3 " style="background-color: #e5ddd5; ">
+                                <div class="p-2 area-conversas">
+                                    <div class="w-100 mt-3">
+                                        <div class="balao-braco">
+                                            <div class="w-100 text-start"><span>It was amazing</span></div>
+                                            <div class="w-100 text-end"><small>14:39</small></div>
+                                        </div>
+                                    </div>
+                                    <div class="w-100 mt-3">
+                                        <div class="balao-braco">
+                                            <div class="w-100 text-start"><span>I want it again</span></div>
+                                            <div class="w-100 text-end"><small>14:39</small></div>
+                                        </div>
+                                    </div>
+                                    <div class="w-100 d-flex justify-content-end mt-3">
+                                        <div class="balao-verde">
+                                            <div class="w-100 text-start"><span>Me too, you're wonderful</span></div>
+                                            <div class="d-flex align-items-center justify-content-end">
+                                                <div class="w-100 text-end me-2"><small>14:40</small></div>
+                                                <img width="15" src="images/visto-recebido-v.png">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="w-100 d-flex justify-content-end mt-3">
+                                        <div class="balao-verde">
+                                            <div class="w-100 text-start"><span><b class="text-danger">Blocked content</b></span></div>
+                                            <div class="d-flex align-items-center justify-content-end">
+                                                <div class="w-100 text-end me-2"><small>14:47</small></div>
+                                                <img width="15" src="images/visto-recebido-v.png">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="w-100 mt-3">
+                                        <div class="balao-braco">
+                                            <div class="w-100 text-start"><span><b class="text-danger">Blocked content</b></span></div>
+                                            <div class="w-100 text-end"><small>14:49</small></div>
+                                        </div>
+                                    </div>
+                                    <div class="w-100 mt-3">
+                                        <div class="balao-braco">
+                                            <div class="w-100 text-start"><span><b class="text-danger">Blocked content</b></span></div>
+                                            <div class="w-100 text-end"><small>14:49</small></div>
+                                        </div>
+                                    </div>
+                                    <div class="w-100 d-flex justify-content-end mt-3">
+                                        <div class="balao-verde">
+                                            <div class="w-100 text-start"><span><b class="text-danger">Blocked content</b></span></div>
+                                            <div class="d-flex align-items-center justify-content-end">
+                                                <div class="w-100 text-end me-2"><small>14:52</small></div>
+                                                <img width="15" src="images/visto-recebido-v.png">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex w-100 p-2">
+                                    <input class="me-2" placeholder="Message">
+                                    <button class="btn-send"><img width="30" src="images/send_1.png"></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chat-aberto-container py-3 px-3" id="chat-container-6">
+                            <div class="d-flex align-items-center justify-content-between w-100">
+                                <div class="d-flex align-items-center justify-content-start">
+                                    <button class="btn-fechar-chat me-2 bg-transparent border-0" style="font-size: 20px"><i class="fa-solid fa-arrow-left"></i></button>
+                                    <img class="img-conversa-mobile me-2" src="images/331.png">
+                                    <h6 style="font-size: 19px !important;">Blocked <i class="fa-solid fa-lock"></i></h6>
+                                </div>
+                                <div class="d-flex align-items-center justify-content-end">
+                                    <img width="30" class="me-3" src="images/20.png">
+                                    <img width="30" class="me-2" src="images/261.png">
+                                    <img width="20" class="me-2" src="images/12.png">
+                                </div>
+                            </div>
+                            <div class="mt-3" style="background-color: #e5ddd5;">
+                                <div class="p-2 area-conversas">
+                                    <div class="w-100 mt-3">
+                                        <div class="balao-braco">
+                                            <div class="w-100 text-start"><span>You're so hot</span></div>
+                                            <div class="w-100 text-end"><small>14:39</small></div>
+                                        </div>
+                                    </div>
+                                    <div class="w-100 d-flex justify-content-end mt-3">
+                                        <div class="balao-verde">
+                                            <div class="w-100 text-start"><span>And you are delicious</span></div>
+                                            <div class="d-flex align-items-center justify-content-end">
+                                                <div class="w-100 text-end me-2"><small>14:40</small></div>
+                                                <img width="15" src="images/visto-recebido-v.png">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="w-100 mt-3">
+                                        <div class="balao-braco">
+                                            <div class="w-100 text-start"><span>I want to see you soon</span></div>
+                                            <div class="w-100 text-end"><small>14:44</small></div>
+                                        </div>
+                                    </div>
+                                    <div class="w-100 d-flex justify-content-end mt-3">
+                                        <div class="balao-verde">
+                                            <div class="w-100 text-start"><span><b class="text-danger">Blocked content</b></span></div>
+                                            <div class="d-flex align-items-center justify-content-end">
+                                                <div class="w-100 text-end me-2"><small>14:47</small></div>
+                                                <img width="15" src="images/visto-recebido-v.png">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="w-100 mt-3">
+                                        <div class="balao-braco">
+                                            <div class="w-100 text-start"><span><b class="text-danger">Blocked content</b></span></div>
+                                            <div class="w-100 text-end"><small>14:49</small></div>
+                                        </div>
+                                    </div>
+                                    <div class="w-100 mt-3">
+                                        <div class="balao-braco">
+                                            <div class="w-100 text-start"><span><b class="text-danger">Blocked content</b></span></div>
+                                            <div class="w-100 text-end"><small>14:49</small></div>
+                                        </div>
+                                    </div>
+                                    <div class="w-100 d-flex justify-content-end mt-3">
+                                        <div class="balao-verde">
+                                            <div class="w-100 text-start"><span><b class="text-danger">Blocked content</b></span></div>
+                                            <div class="d-flex align-items-center justify-content-end">
+                                                <div class="w-100 text-end me-2"><small>14:52</small></div>
+                                                <img width="15" src="images/visto-recebido-v.png">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex w-100 p-2">
+                                    <input class="me-2" placeholder="Message">
+                                    <button class="btn-send"><img width="30" src="images/send.png"></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chat-aberto-container py-3 px-3" id="chat-container-7">
+                            <div class="d-flex align-items-center justify-content-between w-100">
+                                <div class="d-flex align-items-center justify-content-start">
+                                    <button class="btn-fechar-chat me-2 bg-transparent border-0" style="font-size: 20px"><i class="fa-solid fa-arrow-left"></i></button>
+                                    <img class="img-conversa-mobile me-2" src="images/1.png">
+                                    <h6 style="font-size: 19px !important;">Blocked <i class="fa-solid fa-lock"></i></h6>
+                                </div>
+                                <div class="d-flex align-items-center justify-content-end">
+                                    <img width="30" class="me-3" src="images/20.png">
+                                    <img width="30" class="me-2" src="images/261.png">
+                                    <img width="20" class="me-2" src="images/12.png">
+                                </div>
+                            </div>
+                            <div class="mt-3" style="background-color: #e5ddd5;">
+                                <div class="p-2 area-conversas">
+                                    <div class="w-100 mt-3">
+                                        <div class="balao-braco">
+                                            <div class="w-100 text-start"><span>Bring that body over here</span></div>
+                                            <div class="w-100 text-end"><small>14:39</small></div>
+                                        </div>
+                                    </div>
+                                    <div class="w-100 d-flex justify-content-end mt-3">
+                                        <div class="balao-verde">
+                                            <div class="w-100 text-start"><span>When?</span></div>
+                                            <div class="d-flex align-items-center justify-content-end">
+                                                <div class="w-100 text-end me-2"><small>14:40</small></div>
+                                                <img width="15" src="images/visto-recebido-v.png">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="w-100 mt-3">
+                                        <div class="balao-braco">
+                                            <div class="w-100 text-start"><span>When she's not around</span></div>
+                                            <div class="w-100 text-end"><small>14:44</small></div>
+                                        </div>
+                                    </div>
+                                    <div class="w-100 d-flex justify-content-end mt-3">
+                                        <div class="balao-verde">
+                                            <div class="w-100 text-start"><span><b class="text-danger">Blocked content</b></span></div>
+                                            <div class="d-flex align-items-center justify-content-end">
+                                                <div class="w-100 text-end me-2"><small>14:47</small></div>
+                                                <img width="15" src="images/visto-recebido-v.png">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="w-100 mt-3">
+                                        <div class="balao-braco">
+                                            <div class="w-100 text-start"><span><b class="text-danger">Blocked content</b></span></div>
+                                            <div class="w-100 text-end"><small>14:49</small></div>
+                                        </div>
+                                    </div>
+                                    <div class="w-100 mt-3">
+                                        <div class="balao-braco">
+                                            <div class="w-100 text-start"><span><b class="text-danger">Blocked content</b></span></div>
+                                            <div class="w-100 text-end"><small>14:49</small></div>
+                                        </div>
+                                    </div>
+                                    <div class="w-100 d-flex justify-content-end mt-3">
+                                        <div class="balao-verde">
+                                            <div class="w-100 text-start"><span><b class="text-danger">Blocked content</b></span></div>
+                                            <div class="d-flex align-items-center justify-content-end">
+                                                <div class="w-100 text-end me-2"><small>14:52</small></div>
+                                                <img width="15" src="images/visto-recebido-v.png">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex w-100 p-2">
+                                    <input class="me-2" placeholder="Message">
+                                    <button class="btn-send"><img width="30" src="images/send.png"></button>
+                                </div>
+                            </div>
+                        </div>
+
+
+
                     </div>
-                    <div class="media-item">
-                        <img src="images/m06.jpg" alt="Imagen bloqueada borrada">
-                        <div class="media-overlay">
-                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 17c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm6-9h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6h1.9c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm0 12H6V10h12v10z"></path>
-                            </svg>
-                            Bloqueado
+                    <div class="d-flex justify-content-around align-items-center pt-2">
+                        <div class="text-center">
+                            <img width="25" src="images/241.png">
+                            <br>
+                            <span style="font-size: 14px"><b>Chats</b></span>
+                        </div>
+                        <div class="text-center">
+                            <img width="25" src="images/271.png">
+                            <br>
+                            <span style="font-size: 14px"><b>Updates</b></span>
+                        </div>
+                        <div class="text-center">
+                            <img width="25" src="images/251.png">
+                            <br>
+                            <span style="font-size: 14px"><b>Community</b></span>
+                        </div>
+                        <div class="text-center">
+                            <img width="25" src="images/261.png">
+                            <br>
+                            <span style="font-size: 14px"><b>Calls</b></span>
                         </div>
                     </div>
                 </div>
-                
-                
             </div>
         </div>
+        <div class="col-12 my-2"></div>
+        <div class="col-10 col-md-5 p-3 bg-white rounded shadow mb-3">
+            <div class="text-start" id="locationCard">
+                <h4><i class="fa-solid fa-location-dot cor-verde-texto"></i> <b class="cor-verde-escuro-texto">Ubicación Sospechosa</b></h4>
+                <div class="card-content">
+                    <div class="location-section">
+                        <div class="location-text" id="locationMessage">Suspicious location detected in São Paulo, SP.</div>
+                        <div class="map-container">
+                            <div id="map" style="height:300px;"><div style="text-align: center; padding: 20px; color: #666;">It was not possible to load the map. Please try again later.</div></div>
+                        </div>
+                    </div>
+                </div>
 
-        <!-- Keywords Block -->
-        <div class="card" id="keywordsCard">
-            <div class="card-title">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
-                </svg>
-               Informe exportado con una precisión del 98%
-            </div>
-            <div class="card-content">
-                
-
-
-  <meta charset="UTF-8">
-  <title>Mensajes Sospechosos</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #ffffff;
-      text-align: left;
-      padding: 30px;
-    }
-
-    .container {
-      max-width: 600px;
-      margin: 0 auto;
-      border-top: 1px solid #ccc;
-      border-bottom: 1px solid #ccc;
-      padding: 15px 0;
-    }
-
-    .title {
-      font-size: 16px;
-      font-weight: normal;
-      margin-bottom: 10px;
-    }
-
-    .title strong {
-      color: red;
-      font-weight: bold;
-    }
-
-    .item {
-      font-size: 15px;
-      font-weight: bold;
-      margin: 8px 0;
-    }
-
-    .item::before {
-      content: "🔴";
-      margin-right: 8px;
-    }
-  </style>
-
-
-
-  <div class="container">
-    <p class="title">Encontramos <strong>58</strong> mensajes sospechosos:</p>
-
-    <p class="item">3 CONVERSACIONES ARCHIVADAS EN CONTACTO CONSTANTE</p>
-    <p class="item">UNA APLICACIÓN CON CONTRASEÑA ALMACENA 21 FOTOS Y 9 VIDEOS PORNOGRÁFICOS</p>
-    <p class="item">ESTE MISMO CONTACTO ENVÍA MENSAJES: ¿PUEDES HABLAR AHORA? A MENUDO</p>
-  </div>
-
-
-
-                
             </div>
         </div>
+        <div class="col-12 mt-2 "></div>
+        <div class="col-10 col-md-5 p-4 bg-white rounded shadow">
+            <img class="mb-3" width="300" height="300" src="images/celulares.webp">
+            <p>
+                <b>
+                    Has llegado al final de tu consulta gratuita.
+                    Sé que estás cansado de suponer y quieres respuestas reales.
+                </b>
+            </p>
+            <p>
+                Nuestro sistema de rastreo satelital es la tecnología más avanzada para descubrir lo que realmente está ocurriendo. Pero hay un detalle: mantener los satélites y servidores activos las 24 horas del día es costoso.
+            </p>
+            <p>
+                Por eso, lamentablemente, no podemos ofrecer más del 5% de la información que descubrimos de forma gratuita.
+            </p>
+            <p>
+                ¿La buena noticia? No necesitas gastar una fortuna para contratar a un investigador privado.
+            </p>
+            <p>
+                Hemos desarrollado una aplicación que pone esa misma tecnología en tus manos y te permite rastrear todo de manera discreta y eficiente por tu cuenta.
+            </p>
+            <p>
+                ¿Y lo mejor? Los costos son una fracción de lo que pagarías por un investigador, solo lo suficiente para mantener nuestros satélites y el sistema en funcionamiento.
+            </p>
+            <p>
+                Es momento de dejar de adivinar y descubrir la verdad. Las respuestas te están esperando. ¡Haz clic ahora y obtén acceso inmediato, antes de que sea demasiado tarde!
+            </p>
+        </div>
 
-        <!-- Location Block -->
-        <div class="card" id="locationCard">
-            <div class="card-title">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path>
-                </svg>
-                Ubicación Sospechosa
+        <div class="col-12 my-2"></div>
+        <div class="col-10 col-md-5 p-5 rounded shadow mb-3 text-white" style="background-color: #0a3622">
+            <h3>DESCUENTO EXCLUSIVO</h3>
+            <h6 class="text-danger"><s>de $500,00</s></h6>
+            <h1>$19</h1>
+            <span style="color: #bcbcbc;"> Pago único</span>
+
+            <div class="d-flex align-items-center justify-content-start mt-3">
+                <img width="30" class="me-1" src="images/icone-check.png">
+                <span class="text-start">Esta persona se comunicó recientemente con <b class="text-success">3 personas de (IP)</b></span>
             </div>
-            <div class="card-content">
-                <p id="map-dynamic-msg"></p>
-                
-                <div id="map" style="height: 400px; width: 100%; max-width: 800px; margin: 20px auto; border-radius: 10px;"></div>
+            <div class="d-flex align-items-center justify-content-start mt-3">
+                <img width="30" class="me-1" src="images/icone-check.png">
+                <span class="text-start">Nuestra IA detectó un mensaje sospechoso</span>
+            </div>
+            <div class="d-flex align-items-center justify-content-start mt-3">
+                <img width="30" class="me-1" src="images/icone-check.png">
+                <span class="text-start">Se detectó que esta persona <b class="text-success">vio el estado</b> del contacto ****** 6 veces hoy</span>
+            </div>
+            <div class="d-flex align-items-center justify-content-start mt-3">
+                <img width="30" class="me-1" src="images/icone-check.png">
+                <span class="text-start">Se detectó que esta persona <b class="text-success">archivó 2 conversaciones</b> ayer</span>
+            </div>
+
+            <!-- enlace de pago -->
+            <a href="https://pay.mundpay.com/0197ea77-ae49-7096-b1e9-63b3284822ac?ref=">
+                <button class="mb-3 btn-desbloquear mt-5" style="color: #0a3622; font-size: 22px">
+                    <b>COMPRAR AHORA <i class="fa-solid fa-arrow-right"></i></b>
+                </button>
+            </a>
+        </div>
+
+        <div class="col-12"></div>
+        <div class="col-10 col-md-4">
+            <img src="images/30es.png" class="img-fluid">
+        </div>
+        <div class="col-12 mt-2 mb-5"></div>
+    </div>
+</div>
+<script src="js/bootstrap.bundle.js"></script>
 <script>
- async function initMap() {
-  try {
-    const response = await fetch('https://get.geojs.io/v1/ip/geo.json');
-    const data = await response.json();
+    document.querySelectorAll('.btn-abrir-conversa').forEach((btn) => {
+        btn.addEventListener('click', function() {
+            const chatId = this.getAttribute('data-chat');
 
-    if (!data || !data.latitude || !data.longitude) {
-      console.error("Erro ao obter localização");
-      fallbackMap();
-      return;
-    }
+            // Fecha todos os chats antes de abrir outro (senão ficam sobrepostos)
+            document.querySelectorAll('.chat-aberto-container.open').forEach(div => {
+                div.classList.remove('open');
+            });
 
-    const lat = parseFloat(data.latitude);
-    const lng = parseFloat(data.longitude);
-    
-    // Atualiza as variáveis de cidade e região dinamicamente
-    city = data.city || 'Cidade desconhecida';
-    region_code = data.region || 'UF';
+            const chatContainer = document.getElementById('chat-container-' + chatId);
+            chatContainer.style.display = 'block'; // Para disparar o transition
+            // Força o layout a ler o display antes de aplicar a transição
+            void chatContainer.offsetWidth;
+            chatContainer.classList.add('open');
 
-    const locationName = `${city}, ${region_code}, ${data.country}`;
-
-     // <- Atualiza o texto com a cidade certa
-    displayMap(lat, lng, locationName);
-  } catch (error) {
-    console.error("Erro:", error);
-    fallbackMap();
-  }
-}
-
-
-  function fallbackMap() {
-    fetch('https://api.db-ip.com/v2/free/self')
-      .then(response => response.json())
-      .then(data => {
-        const locations = {
-          'US': { lat: 37.0902, lng: -95.7129, name: 'United States' },
-          'FR': { lat: 48.8566, lng: 2.3522, name: 'Paris, France' },
-          'GB': { lat: 51.5074, lng: -0.1278, name: 'London, UK' },
-          'DE': { lat: 52.5200, lng: 13.4050, name: 'Berlin, Germany' },
-          'BR': { lat: -23.5505, lng: -46.6333, name: 'São Paulo, Brazil' },
-          'ES': { lat: 40.4168, lng: -3.7038, name: 'Madrid, Spain' },
-          'IT': { lat: 41.9028, lng: 12.4964, name: 'Rome, Italy' },
-        };
-
-        const location = locations[data.countryCode] || { lat: 48.8566, lng: 2.3522, name: 'Paris, France' };
-
-        displayMap(location.lat, location.lng, location.name);
-      })
-      .catch(error => {
-        console.error("Erro na fallback:", error);
-        displayMap(48.8566, 2.3522, "Paris, France");
-      });
-  }
-
-  function displayMap(lat, lng, locationName) {
-    const redIcon = L.divIcon({
-      html: '<div style="background-color: red; width: 20px; height: 20px; border-radius: 50%; border: 2px solid white;"></div>',
-      className: 'custom-div-icon',
-      iconSize: [20, 20],
-      iconAnchor: [10, 10],
-      popupAnchor: [0, -10],
+            // Função para fechar o chat
+            chatContainer.querySelector('.btn-fechar-chat').onclick = () => {
+                chatContainer.classList.remove('open');
+                setTimeout(() => {
+                    chatContainer.style.display = 'none'; // Garante que some após o efeito
+                }, 300); // mesmo tempo do transition
+            };
+        });
+    });
+    // Abrir o modal
+    document.querySelectorAll('.open-modal').forEach(button => {
+        button.addEventListener('click', () => {
+            const modalId = button.getAttribute('data-modal');
+            const modal = document.getElementById(modalId);
+            modal.classList.add('visible');
+        });
     });
 
-    const map = L.map('map').setView([lat, lng], 14);
-
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: 'Map data ©️ <a href="https://openstreetmap.org">OpenStreetMap</a> contributors',
-    }).addTo(map);
-
-    for (let i = 0; i < 3; i++) {
-      const markerLat = lat + (Math.random() * 0.01 - 0.005);
-      const markerLng = lng + (Math.random() * 0.01 - 0.005);
-
-      const marker = L.marker([markerLat, markerLng], { icon: redIcon }).addTo(map);
-
-      if (i === 0) {
-        marker.bindPopup(`Ubicación sospechosa detectada cerca ${locationName}`).openPopup();
-      } else {
-        marker.bindPopup(`Additional location #${i + 1} near ${locationName}`);
-      }
+    // Fechar modal (com fade-out suave)
+    function closeModal(modal) {
+        modal.classList.remove('visible');
     }
-  }
 
-  document.addEventListener('DOMContentLoaded', initMap);
+    // Botões de fechar
+    document.querySelectorAll('.close').forEach(closeBtn => {
+        closeBtn.addEventListener('click', () => {
+            const modalId = closeBtn.getAttribute('data-close');
+            const modal = document.getElementById(modalId);
+            closeModal(modal);
+        });
+    });
+
+    // Fechar clicando fora do conteúdo
+    document.querySelectorAll('.modal').forEach(modal => {
+        modal.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                closeModal(modal);
+            }
+        });
+    });
+
 </script>
-
-
-
-  <meta charset="UTF-8">
-  <title>Alerta Animado</title>
-  <style>
-    @keyframes pulse {
-      0%, 100% {
-        transform: scale(1);
-      }
-      50% {
-        transform: scale(1.06);
-      }
+<script>
+    // Função para obter o IP do usuário
+    async function getIP() {
+        try {
+            const response = await fetch("https://api.ipify.org?format=json");
+            const data = await response.json();
+            console.log(data);
+            return data.ip;
+        } catch (error) {
+            console.error("Erro ao obter IP:", error);
+            return null;
+        }
     }
 
-    .aviso {
-      font-family: Arial, sans-serif;
-      font-size: 18px;
-      color: red;
-      font-weight: bold;
-      text-transform: uppercase;
-      text-align: center;
-      padding: 20px;
-      animation: pulse 1.2s infinite;
-    }
-  </style>
+    // Função para obter a localização do usuário via IP
+    async function getLocationByIP() {
+        try {
+            const response = await fetch(
+                "https://ipinfo.io/json?token=1356ddd0440965"
+            );
+            const data = await response.json();
 
+            // Extrai as coordenadas do loc
+            const [lat, lng] = data.loc.split(",").map(Number);
 
-
-  <div class="aviso">
-    LA APLICACIÓN ES GRATUITA, SOLO PAGARÁS UNA TARIFA SIMBÓLICA PARA MANTENER NUESTRO SISTEMA EN FUNCIONAMIENTO.
-  </div>
-
-
-
-
-                
-                <a href="https://pay.mundpay.com/019914ef-65ef-726a-9e1a-a2fb6d6d3ea1?ref=ref_68c00ce23fc0c" class="cta-button">
-                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 17c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm6-9h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6h1.9c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm0 12H6V10h12v10z"></path>
-                    </svg>
-                   PAGAR TARIFA Y DESCARGAR ARCHIVOS
-                </a>
-            </div>
-        </div>
-    </div>
-
-
-
-  <meta charset="UTF-8">
-  <title>Garantía</title>
-  <style>
-    .garantia-container {
-      text-align: center;
-      padding: 30px 20px;
-      font-family: Arial, sans-serif;
+            return {
+                lat: lat,
+                lng: lng,
+                city: data.city,
+                region: data.region,
+                country: data.country,
+            };
+        } catch (error) {
+            console.error("Erro ao obter localização:", error);
+            // Retorna uma localização padrão (São Paulo) em caso de erro
+            return {
+                lat: -23.5505,
+                lng: -46.6333,
+                city: "São Paulo",
+                region: "SP",
+                country: "BR",
+            };
+        }
     }
 
-    .garantia-container img {
-      max-width: 200px;
-      margin-bottom: 20px;
+    // Função para atualizar o texto da localização
+    function updateLocationText(location) {
+        const locationMessage = document.getElementById("locationMessage");
+        if (locationMessage) {
+            locationMessage.textContent = `Suspicious location detected in ${location.city}, ${location.region}.`;
+        }
     }
 
-    .garantia-texto {
-      font-size: 16px;
-      color: #000;
-      font-weight: bold;
-    }
-  </style>
-
-
-
-  <div class="garantia-container">
-    <img src="images/30-DIAS-ESP.png" alt="30 Días de Garantía">
-    <div class="garantia-texto">
-      Compra sin riesgo: tienes 30 días de garantía de devolución si no estás satisfecho.
-    </div>
-  </div>
-
-
-
-
-    
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Animate cards on scroll
-            const cards = document.querySelectorAll('.card');
-            
-            function checkVisibility() {
-                cards.forEach(card => {
-                    const rect = card.getBoundingClientRect();
-                    const windowHeight = window.innerHeight || document.documentElement.clientHeight;
-                    
-                    if (rect.top <= windowHeight * 0.85) {
-                        card.classList.add('visible');
-                    }
-                });
-            }
-            
-            // Initial check
-            setTimeout(checkVisibility, 300);
-            
-            // Check on scroll
-            window.addEventListener('scroll', checkVisibility);
-            
-            // Contact buttons open chat popups
-            const contactButtons = document.querySelectorAll('.contact-button');
-            
-            contactButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const contactId = this.getAttribute('data-contact');
-                    const popup = document.getElementById(`chatPopup${contactId}`);
-                    popup.classList.add('active');
-                });
-            });
-            
-            // Close popup buttons
-            const closeButtons = document.querySelectorAll('.popup-close');
-            closeButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const popup = this.closest('.popup-overlay');
-                    popup.classList.remove('active');
-                });
-            });
-            
-            // Close popup when clicking outside
-            const popups = document.querySelectorAll('.popup-overlay');
-            popups.forEach(popup => {
-                popup.addEventListener('click', function(e) {
-                    if (e.target === this) {
-                        this.classList.remove('active');
-                    }
-                });
-            });
-            
-            // --- MAPA E INFO WINDOW CUSTOM ---
-            const numeroClonado = localStorage.getItem('numeroClonado') || '';
-            let ddd = 'XX';
-            if (numeroClonado) {
-                // Extrai apenas os números
-                const numLimpo = numeroClonado.replace(/\D/g, '');
-                if (numLimpo.length >= 2) {
-                    ddd = numLimpo.substring(0, 2);
-                }
-            }
-            // Atualiza todos os contact-name e popup-name
-            document.querySelectorAll('.contact-name, .popup-name').forEach(function(el) {
-                el.textContent = el.textContent.replace(/\+55 \d{2}/, ` ${ddd}`);
-            });
-
-            // Variáveis de cidade e região precisam ser declaradas antes de qualquer uso
-           
-
-            // Buscar localização e atualizar mapa
-            
-            
-
-
-            // Definir imagens de acordo com o alvoMonitoramento
-            const alvo = localStorage.getItem('alvoMonitoramento') || 'parceiro';
-            let prefix = alvo === 'parceira' ? '../relatorio/ph' : '../relatorio/pm';
-
-            // Atualizar avatares dos contatos
-            document.querySelectorAll('.contact-avatar').forEach(function(el, idx) {
-                el.textContent = '';
-                const imgUrl = `${prefix}0${idx+1}.jpg`;
-                el.style.backgroundImage = `url('${imgUrl}')`;
-                // fallback visual caso a Imagen bloqueada não carregue
-                el.onerror = function() {
-                    el.style.background = '#e0e0e0';
-                };
-            });
-
-            // Atualizar avatares dos popups
-            document.querySelectorAll('.popup-avatar').forEach(function(el, idx) {
-                el.textContent = '';
-                const imgUrl = `${prefix}0${idx+1}.jpg`;
-                el.style.backgroundImage = `url('${imgUrl}')`;
-                el.onerror = function() {
-                    el.style.background = '#e0e0e0';
-                };
-            });
-
-            // Atualizar imagens da media-item
-            document.querySelectorAll('.media-item img').forEach(function(img, idx) {
-                if (alvo === 'parceira') {
-                    img.src = `../relatorio/h0${idx+1}.jpg`;
-                } else {
-                    img.src = `../relatorio/m0${idx+1}.jpg`;
-                }
-            });
-
-            // Atualizar o primeiro keyword-text
-            const keywordText1 = document.querySelector('.keyword-text');
-            if (keywordText1) {
-                if (alvo === 'parceira') {
-                    keywordText1.textContent = Math.random() < 0.5 ? '"Yummy"' : '"Naughty"';
-                } else {
-                    keywordText1.textContent = Math.random() < 0.5 ? '"Hot"' : '"Naughty"';
-                }
+    // Inicializando o mapa e data
+    document.addEventListener("DOMContentLoaded", async function () {
+        try {
+            // Atualizar data atual
+            const dateElement = document.getElementById("currentDate");
+            if (dateElement) {
+                const now = new Date();
+                const options = { year: "numeric", month: "long", day: "numeric" };
+                dateElement.textContent = `(${now.toLocaleDateString("en-US", options)})`;
             }
 
-            // Redirecionar todos os .cta-button e .floating-cta-button para a página de pagamento com os parâmetros da URL
+            // Obtém a localização do usuário
+            const location = await getLocationByIP();
 
-});
-    </script>
-    <script>
-  document.addEventListener('DOMContentLoaded', async function () {
-    const numeroClonado = localStorage.getItem('numeroClonado') || '';
-    const mapDynamicMsg = document.getElementById('map-dynamic-msg');
+            // Atualiza o texto da localização
+            updateLocationText(location);
 
-    try {
-      const response = await fetch('https://ipapi.co/json/');
-      const data = await response.json();
+            // Cria o mapa
+            const map = L.map("map", {
+                center: [location.lat, location.lng],
+                zoom: 13,
+                zoomControl: true,
+                dragging: true,
+                scrollWheelZoom: true,
+            });
 
-      const cidadeAtual = data.city || 'Ciudad desconocida';
-      const regiao = data.region_code || '';
+            // Adiciona o tile layer do OpenStreetMap
+            L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+                attribution:
+                    '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                maxZoom: 19,
+            }).addTo(map);
 
-      if (mapDynamicMsg) {
-        mapDynamicMsg.innerHTML = `El número <strong>${numeroClonado}</strong> estaba en este lugar en <strong>${cidadeAtual}</strong> en los últimos 7 días. A continuación se muestra la ubicación registrada más recientemente.`;
-      }
+            // Adiciona um marcador
+            const marker = L.marker([location.lat, location.lng]).addTo(map);
+            marker
+                .bindPopup(
+                    `Detected location: ${location.city}, ${location.region}`
+                )
+                .openPopup();
 
-    } catch (error) {
-      console.warn("Erro ao buscar cidade:", error);
-    }
-  });
+            // Força o redimensionamento do mapa após um pequeno delay
+            setTimeout(() => {
+                map.invalidateSize();
+            }, 100);
+        } catch (error) {
+            console.error("Erro ao inicializar o mapa:", error);
+            // Em caso de erro, mostra uma mensagem no container do mapa
+            const mapContainer = document.getElementById("map");
+            if (mapContainer) {
+                mapContainer.innerHTML =
+                    '<div style="text-align: center; padding: 20px; color: #666;">It was not possible to load the map. Please try again later.</div>';
+            }
+        }
+    });
 </script>
-
 
 
 </body></html>
