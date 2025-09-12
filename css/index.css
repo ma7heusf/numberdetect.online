@@ -1,0 +1,160 @@
+html, body{
+    background-color: #f6f6f3;
+}
+
+.caixa-verde-p1{
+    background-color: #2bd066;
+    border-radius: 16px;
+    border: 1px solid black;
+    transition: 0.2s;
+}
+.caixa-verde-p1:hover{
+    background-color: #138c7e;
+    transform: translateY(-5px);
+}
+
+.rodape-fixo {
+    background-color: white;
+    text-align: center;
+    color: #9c9c9c;
+}
+
+.container-total {
+    background-color: #f6f6f3;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+.caixa img {
+    width: 35px;
+}
+
+
+
+@media (max-width: 576px) {
+    .img1-icone-menu-p1{
+        height: 20px;
+    }
+    .img2-icone-menu-p1{
+        height: 50px;
+    }
+
+    .h2-p1{
+        font-size: 30px;
+    }
+    .h5-p1{
+        margin-top: 20px;
+        font-size: 14px;
+        color: #9c9c9c;
+        font-weight: 400;
+    }
+    .caixa-verde-p1 img {
+        height: 60px;
+    }
+    .h5-p1-responsivo{
+        font-size: 17px;
+        margin-left: 10px;
+    }
+}
+
+
+@media (min-width: 768px) {
+    .img1-icone-menu-p1{
+        height: 20px;
+    }
+    .img2-icone-menu-p1{
+        height: 50px;
+    }
+
+    .h2-p1{
+        font-size: 40px;
+    }
+    .h5-p1{
+        margin-top: 20px;
+        font-size: 19px;
+        color: #9c9c9c;
+        font-weight: 400;
+    }
+    .caixa-verde-p1 img {
+        height: 60px;
+    }
+    .h5-p1-responsivo{
+        font-size: 17px;
+        margin-left: 10px;
+    }
+}
+
+
+@media (min-width: 992px) {
+    .img1-icone-menu-p1{
+        height: 20px;
+    }
+    .img2-icone-menu-p1{
+        height: 50px;
+    }
+
+    .h2-p1{
+        font-size: 40px;
+    }
+    .h5-p1{
+        margin-top: 20px;
+        font-size: 19px;
+        color: #9c9c9c;
+        font-weight: 400;
+    }
+    .caixa-verde-p1 img {
+        height: 60px;
+    }
+    .h5-p1-responsivo{
+        font-size: 17px;
+        margin-left: 10px;
+    }
+}
+
+
+@media (min-width: 1200px) {
+    .img1-icone-menu-p1{
+        height: 20px;
+    }
+    .img2-icone-menu-p1{
+        height: 50px;
+    }
+    .h2-p1{
+        font-size: 40px;
+    }
+    .h5-p1{
+        margin-top: 20px;
+        font-size: 19px;
+        color: #9c9c9c;
+        font-weight: 400;
+    }
+    .caixa-verde-p1 img {
+        height: 70px;
+    }
+    .h5-p1-responsivo{
+        font-size: 19px;
+        margin-left: 10px;
+    }
+}
+
+
+@media (min-width: 1400px) {
+    .img1-icone-menu-p1{
+        height: 20px;
+    }
+    .img2-icone-menu-p1{
+        height: 50px;
+    }
+    .h2-p1{
+        font-size: 40px;
+    }
+    .h5-p1{
+        margin-top: 20px;
+        font-size: 19px;
+        color: #9c9c9c;
+        font-weight: 400;
+    }
+    .caixa-verde-p1 img {
+        height: 70px;
+    }
+}
