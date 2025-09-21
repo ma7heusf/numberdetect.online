@@ -1,0 +1,116 @@
+.container-total {
+    background-color: white;
+    width: 100vw; /* 100% da largura da viewport */
+    height: 100vh; /* 100% da altura da viewport */
+    overflow: hidden;
+}
+.area-lateral{
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Garante que use toda a altura */
+    background-color: white;
+    border-right: 2px solid #f6f5f4;
+}
+.area-pessoas-conversa{
+    flex: 1; /* Ocupa o espaço restante */
+    overflow-y: auto; /* Adiciona scroll apenas aqui */
+    padding-bottom: 10px; /* Espaço extra opcional */
+}
+.area-chat{
+    height:87vh; /* Garante que use toda a altura */
+    overflow-y: auto; /* Adiciona scroll apenas aqui */
+
+}
+
+
+.img-user{
+    width: 120px;
+}
+.img-user-icon-coversa{
+    width: 25px;
+}
+.img-user-icon-pontos{
+    width: 20px;
+}
+.perfil{
+    padding: 17px;
+}
+input{
+    width: 100%;
+    border-radius: 50px;
+    color: #9c9c9c;
+    background-color: #f6f5f4;
+    border: 1px solid #f6f5f4;
+    padding: 15px;
+
+}
+.conversas{
+    padding: 15px 20px;
+}
+.img-conversa{
+    width: 70px;
+    border-radius: 100px;
+}
+.img-conversa-mobile{
+    width: 30px;
+    border-radius: 100px;
+}
+.cor-verde {
+    background-color: #26d366;
+}
+.cor-verde-texto {
+    color: #26d366;
+}
+.cor-cinza-texto {
+    color: #9c9c9c;
+}
+.cor-verde-escuro-texto{
+    color: #128c82;
+}
+
+.btn-liberar-acesso{
+    background-color: #2bd066;
+    border-radius: 10px;
+    color: white;
+    border: 1px solid black;
+    transition: 0.2s;
+}
+
+.btn-liberar-acesso:hover{
+    background-color: #138c7e;
+    transform: translateY(-5px);
+}
+
+.btn-op {
+    border: 2px solid #ebebeb;
+    color: #9c9c9c;
+    background-color: transparent;
+    border-radius: 50px;
+}
+.btn-op-select{
+    border: 2px solid #ebebeb;
+    color: #26d366;
+    background-color: #d9fdd3;
+    border-radius: 50px;
+}
+.cabecalho{
+    padding: 17px;
+    background-color: white;
+}
+.btn-abrir-conversa{
+    width: 100%;
+    border: none;
+    background-color: transparent;
+    padding: 15px 20px;
+    text-align: start;
+}
+.lista-conversas {
+    max-height: 60vh;
+    overflow-y: auto;
+}
+.btn-send{
+    background-color: #26d366;
+    border: none;
+    border-radius: 50px;
+    width: 60px;
+}
