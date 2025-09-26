@@ -1,0 +1,2473 @@
+  * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  :root {
+    --color-text: #ffffff;
+    --color-primary: #d1b37d;
+    --color-secound: #fff;
+    --color-thrid: rgb(92 49 77);
+    --color-thrid-hover: rgba(92, 49, 77, 0.719);
+    --color-primary-hover: #d1b37d;
+    --color-white-hover: rgba(255, 255, 255, 0.9);
+    --color-white: #fff;
+    --black-900: #000;
+    --black-700: #222;
+    --color-modal-tracks: #a1924129;
+  }
+  @keyframes glow-up {
+    from {
+      filter: drop-shadow(0px 0px 0px rgba(255, 255, 255, 0.5));
+    }
+    to {
+      filter: drop-shadow(0px 0px 10px rgba(255, 255, 255, 0.5));
+    }
+  }
+  @keyframes load {
+    from {
+      width: 100%;
+    }
+    to {
+      width: 0px;
+    }
+  }
+  @keyframes pulse-animation {
+    0% {
+      scale: 1;
+    }
+    50% {
+      scale: 1.1;
+    }
+    100% {
+      scale: 1;
+    }
+  }
+  @keyframes shake {
+    10%,
+    90% {
+      transform: translate3d(-1px, 0, 0);
+    }
+
+    20%,
+    80% {
+      transform: translate3d(2px, 0, 0);
+    }
+
+    30%,
+    50%,
+    70% {
+      transform: translate3d(-4px, 0, 0);
+    }
+
+    40%,
+    60% {
+      transform: translate3d(4px, 0, 0);
+    }
+  }
+  @keyframes fadeIn {
+    0%,
+    50% {
+      opacity: 1;
+    }
+    25%,
+    75% {
+      opacity: 0;
+    }
+  }
+  @keyframes progress-forward {
+    0% {
+      width: 0%;
+    }
+    25% {
+      width: 50%;
+    }
+    50% {
+      width: 75%;
+    }
+    75% {
+      width: 85%;
+    }
+    100% {
+      width: 100%;
+    }
+  }
+
+  @keyframes vibrar {
+    0%   { transform: translateY(0); }
+    10%  { transform: translateY(-2px); }
+    20%  { transform: translateY(2px); }
+    30%  { transform: translateY(-2px); }
+    40%  { transform: translateY(2px); }
+    50%  { transform: translateY(-2px); }
+    60%  { transform: translateY(2px); }
+    70%  { transform: translateY(-2px); }
+    80%  { transform: translateY(2px); }
+    90%  { transform: translateY(-2px); }
+    100% { transform: translateY(0); }
+  }
+
+  a {
+    color: initial;
+    text-decoration: none;
+  }
+  button {
+    cursor: pointer;
+    background: initial;
+    border: none;
+  }
+  li {
+    list-style: none;
+  }
+  body {
+    background: #e0e6f4;
+  }
+  body,
+  input,
+  button,
+  textarea,
+  select {
+    font-size: 1rem;
+    font-family: 'Poppins', 'serif';
+    font-weight: 500;
+    color: var(--color-text);
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 strong {
+    font-weight: 600;
+  }
+  .container {
+    margin: auto;
+    width: 100%;
+    max-width: 100%;
+    padding: 0 1.25rem;
+  }
+  .title-h1 {
+    font-weight: 700;
+    font-size: 56px;
+    line-height: 78px;
+  }
+  #page-wrapper {
+    min-height: 100vh;
+    max-height: -webkit-fill-available;
+    position: relative;
+  }
+  .hide {
+    visibility: hidden;
+    height: 0;
+    opacity: 0;
+    display: none !important;
+    overflow: hidden;
+  }
+  .glowUp {
+    animation: glow-up 1s ease-in-out infinite alternate;
+  }
+  .vibrar {
+    animation: vibrar 2s ease-in-out infinite alternate;
+  }
+
+  .loading-container {
+    position: fixed;
+    height: 100%;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #fff;
+    z-index: 9999;
+  }
+  .loading-container h3 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: var(--primary-color);
+  }
+  .loading-container h3#btn-loading-initial {
+    height: 35px;
+  }
+  .list-itens .btn-item{
+    cursor: pointer !important;
+  }
+  .loading-container.initial {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+  }
+  .progress-bar {
+    position: relative;
+    height: 30px;
+    width: 85%;
+    max-width: 300px;
+    background: var(--primary-color);
+    border-radius: 5px;
+  }
+  .progress-fill {
+    position: absolute;
+    height: 100%;
+    width: 0%;
+    animation: progress-forward 2s infinite;
+    background: var(--color-primary);
+    border-radius: 3px;
+  }
+
+  .btn-item {
+    font-weight: 500;
+    font-size: 1.25rem;
+    padding: 12px;
+    text-align: center;
+    line-height: 1;
+    cursor: pointer !important;
+    border-bottom: 3px solid var(--color-primary);
+    background: var(--color-white);
+    color: #000;
+    border-radius: 5px;
+    line-height: 1;
+    min-height: initial;
+    width: 100%;
+  }
+
+  .btn-item:nth-child(odd) {
+    background: var(--color-white); 
+  }
+  .btn-item:nth-child(even) {
+    background: rgb(201 200 200); 
+  }
+
+  .list-itens .btn-item.active {
+    background: var(--color-primary-hover);
+  }
+  .btn-item:hover {
+    background: #6f6f6f;
+  }
+
+  .background-image-sign {
+    filter: brightness(40%);
+    position: fixed;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    line-height: 0;
+    z-index: -1;
+  }
+  .background-image-sign img {
+    width: 100%;
+    height: -webkit-fill-available;
+    object-fit: cover;
+    line-height: 0;
+  }
+  .section-wrapper {
+    min-height: 90vh;
+    max-height: -webkit-fill-available;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 10px 0;
+  }
+  .section-wrapper .section-paragraph {
+    font-size: 1.125rem;
+    color: #fff;
+    text-align: center;
+    line-height: 1.5;
+    margin-bottom: 15px;
+  }
+  .section-wrapper .section-form {
+    width: 100%;
+    margin: 0 auto;
+    background-color: #303030d8;
+    position: relative;
+    border-radius: 20px;
+    padding: 40px 30px;
+    overflow: hidden;
+    /* Ensure the container doesn't overflow when using ::before pseudo-element */
+  }
+
+
+
+  .category-item-btn .item-checkbox{
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    align-items: center;
+  }
+  .section-life-categories .options-itens{
+    max-width: 600px;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+  .section-life-categories .option-item.image-text{
+    width: calc(50% - 8px);
+    padding: 0;
+  }
+  .section-life-categories .option-item.image-text button.category-item-btn{
+    width: 100%;
+    background: #252b4c;
+    padding: 25px;
+    display: flex;
+    border-radius: 10px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  .section-life-categories button.category-item-btn img{
+    filter: invert(1);
+    height: 80px;
+  }
+
+  button.category-item-btn{
+    font-family: 'Poppins';
+  }
+  .section-life-categories button.category-item-btn  p{
+    color: #fff;
+    font-size: 1rem;
+    line-height: 1.2;
+    font-weight: 600;
+    width: 80%;
+
+    font-family: 'Poppins';
+  }
+  .section-life-categories .options-itens .option-item .item-checkbox{
+    width: 100%;
+  }
+  .options-itens .option-item .item-checkbox{
+    gap: 5px;
+  }
+  .options-itens .option-item .item-checkbox{
+    font-size: 1.25rem;
+    line-height: 20px;
+  }
+  .section-header-form {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    flex-direction: column;
+  }
+  .section-life-categories h2 {
+    font-size: 2.125rem !important;
+  }
+  .section-header-form h2.section-heading {
+    display: block;
+    font-weight: 600;
+    font-size: 2rem;
+    line-height: 1.2;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    text-shadow: var(--color-primary) 1px 0 10px;
+  }
+  p.section-subheading {
+    font-size: 1.25rem;
+    font-family: 'Poppins', 'serif';
+    letter-spacing: 0px;
+    margin-bottom: 15px;
+    text-align: center;
+    color: #fff;
+    border-radius: 14px;
+    padding: 5px 10px;
+    line-height: 1.4;
+  }
+
+  .section-header-form .subheading{
+    text-shadow: #FFF 5px 0 20px;
+    font-family: 'Poppins', 'serif';
+  }
+
+
+
+
+  .section-wrapper .section-form .form-container {
+    /* display: grid; */
+    /* grid-template-rows: 1fr auto; */
+    display: flex;
+    flex-direction: column;
+    min-height: auto;
+    gap: 25px;
+  }
+
+  .section-form .form-content {
+    /* display: grid; */
+    /* grid-template-rows: auto 1fr; */
+    /* justify-content: inherit; */
+    /* grid-template-columns: 1fr; */
+    /* align-items: baseline; */
+    /* justify-items: center; */
+    min-height: 246px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .section-form .form-content .title-box-form{
+    font-size: 1.25rem;
+    text-align: center;
+    max-width: 530px;
+    margin-bottom: 25px;
+  }
+  .section-form .form-content.name-step-five,
+  .section-form .form-content.name-step-six {
+    grid-template-rows: inherit;
+  }
+  .btns-modal-step-five {
+    margin-top: -30px;
+  }
+
+  .section-form .form-content.name-step-seventh {
+    display: grid;
+    grid-template-rows: 1fr auto;
+  }
+  .circle {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--color-white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  button.active .circle span {
+    display: block;
+  }
+  .circle span {
+    height: 12px;
+    width: 12px;
+    line-height: 0;
+    background: var(--color-primary-hover);
+    border-radius: 50%;
+    display: none;
+  }
+  .civil-state-btn .state-control {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+  }
+  .name-step-seventh .field-first-name {
+    text-align: center;
+    height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    justify-content: center;
+    align-items: center;
+  }
+  .name-step-seventh .field-first-name #first-name {
+    max-width: 300px;
+    margin: auto;
+  }
+  .form-content .btn-back {
+    background: var(--color-thrid);
+    color: #fff;
+    padding: 10px 24px;
+    margin: 30px auto auto auto;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    font-size: 1.375rem;
+    font-weight: 500;
+    min-width: 100px;
+    border-radius: 12px;
+  }
+  .form-content .btn-back:hover,
+  .form-content .step-back:hover {
+    background: var(--color-thrid-hover);
+  }
+  .btn-back .far {
+    font-family: 'fontawesome';
+    font-size: 1.25rem;
+    margin-bottom: -4px;
+  }
+  .form-content h3.title-mobile {
+    display: none;
+  }
+  .form-content h3 {
+    display: block;
+    width: auto;
+    margin-bottom: 30px;
+    font-size: 2.125rem;
+    letter-spacing: -1px;
+    font-weight: 600;
+    text-transform: uppercase;
+    line-height: 1;
+    color: #fff;
+    background-color: var(--color-primary);
+    border-radius: 14px;
+    padding: 10px;
+    text-align: center;
+  }
+  .form-content.name-step-one h3 {
+    margin-bottom: 40px;
+  }
+  .form-button {
+    text-align: center;
+  }
+  .form-button .button-form {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 15px auto;
+    background-color: var(--color-primary);
+    color: #fff;
+    max-width: 450px;
+    border-radius: 30px;
+    padding: 10px 30px;
+    animation: pulse-animation 2s infinite;
+    margin-bottom: 10px;
+  }
+  .form-button .button-form.btn-life-categories{
+    margin-top: 25px;
+  }
+  .form-button .button-form:hover {
+    background-color: var(--color-primary-hover);
+    animation: shake 2s infinite;
+  }
+  .frame {
+    font-style: normal;
+    font-weight: 600;
+    font-family: 'Poppins';
+    line-height: 1.2;
+    display: inline-block;
+    text-align: center;
+    font-size: 1.75rem;
+    max-width: calc(100% - 32px);
+  }
+  .sign-buttons-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    max-width: 450px;
+    margin: 15px;
+    .category-item-btn{
+      background: #a1924129;
+      border: 2px solid var(--color-primary);
+      padding: 15px 10px;
+      border-radius: 15px;
+      width: 100%;
+      font-size: 1rem;
+      font-family: 'Poppins';
+      min-height: 130px;
+      font-weight: 600;
+      color: var(--color-white);
+    
+    img{
+      height: 45px;
+    }
+  }
+  }
+  .sign-buttons-container .option-item.image-text{
+    flex-basis: calc(50% - 5px);
+  }
+  .sign-buttons-container .button-sing {
+    width: calc(20% - 4px);
+    background-color: #252b4c;
+    background-position: center center;
+    background-size: 55px 55px;
+    border-radius: 15px;
+    padding: 10px;
+  }
+  .sign-buttons-container .button-sing.active {
+    border-color: var(--color-secound);
+    background-color: #252b4cd4;
+  }
+  .sign-buttons-container .button-sing:hover {
+    background-color: #252b4cd4;
+  }
+  .sign-buttons-container .button-sing p {
+    line-height: 1;
+    text-transform: capitalize;
+    color: #fff;
+  }
+  .sign-buttons-container .button-sing img {
+    height: 65px;
+    margin-bottom: 6px;
+  }
+
+  .alert-modal.error {
+    position: fixed;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    margin: 4px auto;
+    border-radius: 0px;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 5px 0px;
+    background-color: rgb(206, 53, 44);
+    color: rgb(255, 255, 255);
+    width: 310px;
+    cursor: pointer;
+    min-height: 59.9297px;
+    padding: 0px;
+    list-style-type: none;
+    z-index: 10000000;
+  }
+  .alert-modal.error .alert-mensage {
+    font-size: 14px;
+    font-weight: 400;
+    font-family: open sans, sans-serif;
+    color: #eee;
+    text-align: center;
+    padding: 1.25rem;
+    width: auto;
+    position: relative;
+  }
+  .alert-modal.error .alert-scroll {
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    height: 4px;
+    width: 100%;
+    background-color: rgb(0, 0, 0);
+    opacity: 0.2;
+    transition: all 100ms linear 0s;
+    animation: load 2s linear;
+  }
+  .alert-modal.error .alert-scroll:hover {
+    width: 100%;
+  }
+  .date-sign-control .date-header {
+    text-align: center;
+  }
+  .date-sign-container {
+    display: flex;
+    gap: 15px;
+  }
+  .date-sign-container .date-sign-control {
+    width: 100%;
+    max-width: 395px;
+  }
+  .date-sign-control .date-list li {
+    width: calc(15% - 10px);
+    height: 60px;
+    display: flex;
+    align-items: center;
+    border-bottom: 3px solid var(--color-primary);
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 500;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.2s;
+    background: #fff;
+    color: #000;
+    border-radius: 5px;
+  }
+  .date-sign-control .date-list li:hover {
+    background: var(--color-white-hover);
+  }
+  .date-sign-container .date-header {
+    background: var(--color-primary);
+    border-radius: 5px;
+    margin-bottom: 5px;
+    padding: 10px;
+  }
+  .date-sign-container .date-header h4 {
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 500;
+  }
+  .date-sign-control .date-list li.active {
+    background: var(--color-primary-hover);
+    color: #000;
+  }
+  .section-form .decade-sign-container,
+  .section-form .years-sign-container {
+    height: -webkit-fill-available;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .decade-sign-container ul {
+    max-width: 600px;
+    justify-content: center;
+  }
+
+  .years-sign-container ul {
+    max-width: 600px;
+    justify-content: center;
+  }
+  .list-itens {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .hours-birthdate-quest {
+    /* display: grid; */
+    /* grid-template-rows: auto 1fr; */
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    gap: 2rem;
+    height: 100%;
+  }
+  .hours-birthdate-quest span,
+  .country-quest span {
+    font-size: 1.5rem;
+    color: #fff;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -0.5px;
+  }
+  .buttons-control {
+    display: flex;
+    gap: 24px;
+  }
+  .btn-secound {
+    width: 136px;
+    height: 52px;
+    font-size: 1.5rem;
+    font-weight: 500;
+    border-radius: 5px;
+    color: #fff;
+    background-color: var(--color-primary);
+  }
+  .btn-secound:hover {
+    background-color: var(--color-primary-hover);
+  }
+  /* .btn-true{
+      background-color: #43BF0D;
+  }
+  .btn-false{
+      background-color: #EE4242;
+  } */
+
+  .hours-birthdate-container {
+    display: flex;
+    flex-direction: column;
+    /* display: grid;
+    grid-template-rows: auto 1fr; */
+    justify-items: center;
+    height: 100%;
+  }
+  .hours-birthdate-container .title-hours-field {
+    margin-bottom: 10px;
+  }
+  .hours-birthdate-container .title-hours-field h4 {
+    text-align: center;
+    font-size: 1.75rem;
+    font-weight: 500;
+    color: #fff;
+    line-height: 1;
+  }
+  .hours-birthdate-container .hours-fields span {
+    font-size: 1.125rem;
+    letter-spacing: -0.25px;
+    max-width: 700px;
+    line-height: 1.5;
+    text-align: center;
+    color: #fff;
+  }
+  .hours-birthdate-container .hours-fields {
+    /* display: grid; */
+    /* grid-template-rows: auto 1fr; */
+    /* justify-items: center; */
+    /* max-width: 100%; */
+    /* width: 100%; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-items: center;
+  }
+  .hours-birthdate-container .hours-fields input[type='time'] {
+    border: none;
+    font-size: 1.125rem;
+    padding: 4px 10px;
+    outline: none;
+    border-radius: 5px;
+    width: 116px;
+    color: #000;
+  }
+  .hours-birthdate-container .field-control-hours {
+    display: flex;
+    gap: 10px;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+  .hours-birthdate-container .btn-hours-confirm {
+    background: var(--color-primary);
+    color: #fff;
+    height: 55px;
+    padding: 0px 18px;
+    border-radius: 5px;
+    animation: pulse-animation 2s infinite;
+  }
+  .hours-birthdate-container .btn-hours-confirm i {
+    font-size: 1.5rem;
+  }
+  .hours-birthdate-container .btn-hours-confirm:hover {
+    background: var(--color-primary-hover);
+  }
+  .sing-moon-loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .sing-moon-loading img {
+    width: 170px;
+  }
+  .country-quest {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    height: 100%;
+    width: 100%;
+    justify-items: center;
+    gap: inherit;
+  }
+  .country-quest .btns-modal-country {
+    align-items: center;
+  }
+  .modal-wrapper-container {
+    position: relative;
+  }
+  .modal-wrapper-container.active .modal-wrapper-list {
+    display: flex;
+  }
+  .country-selector-container .country-modal {
+    margin: auto;
+    max-width: 220px;
+  }
+  .modal-wrapper-list {
+    background-color: #222;
+    max-width: 200px;
+    width: 100%;
+    flex-direction: column;
+    position: absolute;
+    margin-top: 2px;
+    max-height: 150px;
+    overflow-y: scroll;
+    display: none;
+  }
+  .modal-wrapper-list.civil-status-list,
+  .modal-wrapper-list.gender-list {
+    position: relative;
+    left: calc(50% - 100px);
+    margin-top: -5px;
+  }
+  .modal-wrapper-list::-webkit-scrollbar-thumb {
+    background: #ccc;
+    height: 90%;
+  }
+  .modal-wrapper-list::-webkit-scrollbar {
+    width: 5px;
+  }
+  .modal-wrapper-head.country-modal-head {
+    position: relative;
+    margin-top: 40px;
+  }
+  .modal-wrapper-head .modal-wrapper-icons {
+    position: absolute;
+    top: 8px;
+    right: 15px;
+    font-size: 1.25rem;
+    cursor: pointer;
+  }
+  .modal-wrapper-container .modal-wrapper-icons .fa-chevron-down {
+    transform: rotate(0deg);
+    transition: 0.4s;
+    color: #000;
+  }
+  .modal-wrapper-container.active .modal-wrapper-icons .fa-chevron-down {
+    transform: rotate(180deg);
+  }
+
+  .modal-wrapper-list.gender-list {
+    overflow: inherit;
+  }
+  .modal-wrapper-list li {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 14px 20px;
+  }
+  .modal-wrapper-list li.active {
+    background-color: rgba(175, 53, 137, 0.9);
+  }
+  .modal-wrapper-list li:hover {
+    background-color: var(--color-primary-hover);
+  }
+  .modal-wrapper-list li img {
+    width: 25px;
+    border: 1px solid #000;
+  }
+  .modal-wrapper-list li span {
+    padding-left: 6px;
+    font-weight: 500;
+    font-size: 0.875rem;
+  }
+  .modal-wrapper-head {
+    width: 100%;
+    max-width: 220px;
+    margin: auto;
+    position: relative;
+  }
+  .modal-wrapper-head:before {
+    content: '';
+    display: block;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    cursor: pointer;
+  }
+  .modal-wrapper-head input {
+    width: 100%;
+    background: var(--color-white);
+    color: #000;
+    border-radius: 5px;
+    border: none;
+    border-bottom: 3px solid var(--color-primary);
+    cursor: pointer;
+    padding: 10px 15px;
+    text-transform: capitalize;
+  }
+  .modal-wrapper-head input::placeholder {
+    color: #000;
+  }
+  .input-control {
+    position: relative;
+  }
+  .modal-wrapper-list.country-list {
+    background-color: #222;
+    border: 1px solid var(--color-primary);
+    width: 200px;
+    margin: -7px 10px 0;
+    padding: 10px 0;
+  }
+  .modal-wrapper-list.country-list li {
+    padding: 7px 20px;
+  }
+  .input-control .field-input {
+    font-family: 'Poppins';
+    width: 100%;
+    background-color: #fff;
+    border-radius: 5px;
+    border: none;
+    border-bottom: 3px solid var(--color-primary);
+    padding: 10px 15px;
+    outline: none;
+    color: #000;
+  }
+  .input-control .field-input::placeholder {
+    color: #000;
+  }
+  .input-control.error .field-input {
+    border-color: #cc1006;
+  }
+  .input-control .error-field {
+    color: #cc1006;
+    font-size: 0.75rem;
+    margin-top: 5px;
+    height: 20px;
+    width: 100%;
+    text-align: center;
+  }
+  .loading-container {
+    position: absolute;
+    height: 100%;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: #fff;
+  }
+  .sing-moon-loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .loading-container h3,
+  .sing-moon-loading h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #000;
+  }
+  .progress-bar {
+    position: relative;
+    height: 40px;
+    width: 90%;
+    max-width: 300px;
+    background: var(--color-white);
+    border-radius: 30px;
+    border: 1px solid var(--color-primary);
+    box-shadow: 0 0 10px var(--color-primary);
+  }
+  #progress-bar{
+    width: 100%;
+    margin: 10px 0;
+    background-color: #00000069;
+    border-radius: 20px;
+  }
+  #progress-bar #progress{
+    height: 10px;
+    background-color: var(--color-primary);
+    width: 0%;
+    border-radius: 20px;
+  }
+  .progress-fill {
+    position: absolute;
+    height: 100%;
+    width: 0%;
+    animation: progress-forward 2s infinite;
+    background-image: url(../images/progress.jpg);
+    object-fit: cover;
+    /*background: var(--color-primary); */
+    border-radius: 30px;
+  }
+  .section-modal-pitch .modal-pitch {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .section-modal-pitch .modal-pitch-container {
+    width: 100%;
+    margin: auto;
+    max-width: 600px;
+    padding: 15px;
+  }
+
+  .section-modal-pitch .modal-pitch-title h3 {
+    text-align: center;
+    font-size: 2.75rem;
+    line-height: 1.3;
+    font-weight: 600;
+  }
+  .section-modal-pitch .modal-pitch-button {
+    text-align: center;
+    margin-top: 120px;
+  }
+  .section-modal-pitch .modal-pitch-button button {
+    padding: 15px 40px;
+    background: var(--color-primary);
+    color: #fff;
+    font-size: 1.375rem;
+    font-weight: 600;
+    border: 2px solid var(--color-primary);
+    border-radius: 40px;
+    transition: 0.3s;
+    animation: pulse-animation 2s infinite;
+  }
+  .section-modal-pitch .modal-pitch-button button:hover {
+    animation: shake 2s infinite;
+    background: transparent;
+  }
+
+  .animation-section{
+    .section-subheading{
+      display: none;
+    }
+    .progress-bar{
+      display: none;
+    }
+  }
+  .section-wrapper .animation-section {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+  .animation-section .animation-container {
+    height: calc(100vh - 200px);
+    width: 100%;
+    max-height: 700px;
+    display: grid;
+    grid-template-rows: 1fr auto;
+    gap: 1px;
+    overflow-y: hidden;
+    background-color: #000000b5;
+  }
+  .animation-section .animation-container .modal-animation {
+    width: 100%;
+  }
+  .animation-section .modal-animation .modal-audio-container {
+    border: 2px solid var(--color-primary-hover);
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+  #audio-astrology {
+    height: 128px;
+    width: 100%;
+    background: var(--color-modal-tracks);
+    position: relative;
+    border: 2px solid var(--color-primary);
+  }
+  #audio-astrology .audio-astrology-container {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+  }
+  #audio-astrology .video-js {
+    padding: 0 !important;
+    height: 100% !important;
+    background: transparent;
+  }
+  #audio-astrology .vjs-has-started .vjs-control-bar {
+    display: none;
+  }
+  #audio-astrology .vjs-text-track-cue {
+    height: 100% !important;
+    top: 0 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100% !important;
+    padding: 0 30px 0 0;
+  }
+  #audio-astrology .buttons-audio-container .volume-video {
+    display: none;
+  }
+  #audio-astrology .vjs-text-track-cue > div {
+    font-family: 'Poppins' !important;
+    font-size: 1.5rem;
+    text-align: center;
+    font-weight: 500;
+    background: initial !important;
+  }
+  #audio-astrology .video-js .vjs-control-bar {
+    background: none;
+    display: flex !important;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: initial;
+    width: auto;
+    align-items: center;
+  }
+  #audio-astrology .video-js .vjs-volume-panel{
+    height: 40px;
+    width: 40px;
+    position: absolute;
+    bottom: 20px;
+    right: 15px;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+  }
+  #audio-astrology .video-js .vjs-mute-control{
+    height: auto;
+    width: auto;
+  }
+  #audio-astrology .video-js .vjs-mute-control{
+    display: flex;
+    align-items: end;
+    justify-content: center;
+  }
+  #audio-astrology .video-js .vjs-volume-panel .vjs-icon-placeholder:before{
+    font-size: 2rem;
+    position: initial;
+    line-height: 1;
+  }
+  #audio-astrology .buttons-audio-container {
+  /*     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    width: 69px;
+    height: fit-content;
+    padding: 25px 20px;
+    border-left: 4px solid var(--color-primary-hover);
+    position: absolute;
+    right: 0;
+    top: calc(50% - 55.5px); */
+  }
+  #audio-astrology .buttons-audio-container .start-pause-audio{
+    height: 40px;
+    width: 40px;
+    position: absolute;
+    top: 20px;
+    right: 15px;
+  }
+  #audio-astrology .video-js .vjs-play-control{
+    height: auto;
+    width: 40px;
+    display: none;
+  }
+  #audio-astrology .button-video .fas {
+    display: none;
+    color: #fff;
+  }
+  #audio-astrology .start-pause-audio .fas {
+    font-size: 1.375rem;
+  }
+  #audio-astrology .volume-video .fas {
+    font-size: 1.5rem;
+  }
+  #audio-astrology .start-pause-audio.active .fa-pause,
+  #audio-astrology .start-pause-audio.false .fa-play {
+    display: block;
+  }
+  #audio-astrology .volume-video.active .fa-volume-up,
+  #audio-astrology .volume-video.false .fa-volume-off {
+    display: block;
+  }
+  #audio-astrology .video-js .vjs-control-bar .vjs-progress-control, #audio-astrology .video-js .vjs-control-bar, #audio-astrology .video-js .vjs-control-bar .vjs-subs-caps-button, #audio-astrology .video-js .vjs-control-bar .vjs-fullscreen-control, #audio-astrology .video-js .vjs-control-bar .vjs-time-control, #audio-astrology .video-js .vjs-control-bar .vjs-volume-control{
+    display: none;
+  }
+  #audio-astrology .vjs-text-track-display {
+    bottom: initial !important;
+    position: static;
+    height: 100%;
+  }
+  #audio-astrology .vjs-text-track-display > div {
+    position: static !important;
+    height: 100%;
+    margin: 0 !important;
+  }
+  .modal-warning {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+  }
+  .modal-warning .btn-play {
+    font-size: 1.375rem;
+    color: #fff;
+    width: 100%;
+    max-width: 280px;
+    padding: 13px 0;
+    font-weight: 500;
+    border-radius: 30px;
+    background: var(--color-primary);
+    letter-spacing: 1.1px;
+    outline: none;
+    transition: opacity 1s;
+    animation: pulse-animation 2s infinite;
+  }
+  .modal-warning .btn-play:hover {
+    background: var(--color-primary-hover);
+    animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  }
+  .modal-warning p {
+    font-size: 1.25rem;
+    font-weight: 500;
+  }
+  .modal-warning h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 15px;
+  }
+  .modal-warning .content-warning {
+    text-align: center;
+    margin-bottom: 40px;
+    max-width: 620px;
+    padding: 0 20px;
+    color: #fff;
+  }
+  .section-header-form h2.section-heading-mobile {
+    display: none;
+  }
+
+  .gender-modal .gender-modal-container {
+    display: flex;
+    gap: 36px;
+  }
+  .gender-modal .gender-modal-container button.gender-button {
+    padding: 25px;
+    border-radius: 10px;
+    background: var(--color-modal-tracks);
+    border: 1px solid var(--color-primary);
+  }
+  button.gender-button img{
+    height: 150px;
+  }
+  .gender-modal .gender-modal-container .gender-control {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    line-height: 1;
+    margin-top: 9px;
+  }
+  .gender-modal .gender-control label {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-top: 2px;
+    color: var(--color-secound);
+  }
+  .gender-modal .gender-control input {
+    background: transparent;
+    appearance: none;
+    border: 2px solid var(--color-secound);
+    height: 20px;
+    width: 20px;
+    border-radius: 10px;
+    position: relative;
+  }
+  .gender-modal .gender-control input:checked::before {
+    content: '';
+    background-color: #fff;
+    border-radius: 50%;
+    display: block;
+    height: 12px;
+    width: 12px;
+    position: absolute;
+    top: calc(50% - 6px);
+    left: calc(50% - 6px);
+  }
+  .modal-hours-controls {
+    display: flex;
+    gap: 20px;
+    max-width: 300px;
+    align-items: center;
+    margin: 0 auto;
+  }
+  .cta-astrologia-section .cta-image-product {
+    padding: 0px 30px 0px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cta-astrologia-section .cta-image-product img {
+    width: 100%;
+  }
+
+  .cta-astrologia-section .text-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  .cta-astrologia-section .cta-paragraph h3 {
+    color: #000;
+    font-weight: 600;
+    font-size: 10px;
+    text-align: center;
+  }
+  .cta-astrologia-section .cta-content {
+    padding: 15px 30px;
+  }
+
+  .cta-astrologia-section .cta-product {
+    display: grid;
+    grid-template-columns: minmax(100px, 335px) minmax(100px, 300px);
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .cta-astrologia-section .cta-warranty h3 {
+    color: #000;
+    font-weight: 600;
+    font-size: 10px;
+  }
+  .cta-astrologia-section .cta-warranty {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 15px;
+  }
+  .cta-astrologia-section .cta-warranty img {
+    max-width: 75px;
+  }
+  .cta-astrologia-section .cta-button {
+    text-align: center;
+    width: 100%;
+  }
+  .cta-astrologia-section .cta-button .cta-btn {
+    color: #fff;
+    background: #fd1c16;
+    padding: 12px 0;
+    max-width: 240px;
+    width: 100%;
+    display: inline-block;
+    line-height: 1.5;
+    cursor: pointer;
+    border-radius: 30px;
+    text-transform: uppercase;
+    font-weight: 800;
+    font-size: clamp(0.75rem, 3vw, 1rem);
+    box-shadow: 0px 1px 5px #6f6f6f;
+    text-decoration: none;
+  }
+  .cta-btn:hover {
+    animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+  .cta-astrologia-section .cta-security {
+    width: 95%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+  }
+  .cta-astrologia-section .cta-security img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+  }
+  .cta-astrologia-section .cta-security p {
+    font-size: clamp(0.5rem, 3vw, 0.75rem);
+    text-align: center;
+  }
+
+  .cta-astrologia-section .cta-payments {
+    width: clamp(90%, 17vw, 95%);
+  }
+  .cta-astrologia-section .cta-payments img {
+    object-fit: contain;
+    object-position: center;
+  }
+
+  .cta-astrologia-section .cta-user {
+    display: flex;
+    align-items: center;
+    border: 1px dotted #000;
+    width: 100%;
+  }
+  .cta-astrologia-section .cta-user img {
+    width: 62px;
+    height: auto;
+    object-position: center;
+    object-fit: contain;
+  }
+  .cta-astrologia-section .cta-user p {
+    font-size: 9px;
+    font-style: italic;
+    color: #000;
+    background: #fff;
+    padding: 4px 8px;
+  }
+  .cta-header {
+    text-align: center;
+    font-weight: 500;
+    padding: 8px;
+    font-size: 11px;
+    width: calc(100% + 21px);
+    background: #333157;
+  }
+
+  .cta-header span {
+    color: yellow;
+    display: block;
+  }
+  .cta-astrologia-section .cta-modal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    flex: 1 1;
+    padding: 0px 10px 10px 10px;
+    border-radius: 10px;
+    height: fit-content;
+    max-height: 90vh;
+    max-width: 800px;
+    margin: auto;
+    overflow: hidden;
+    background-color: #e3e3e3;
+    border: none;
+  }
+
+  .modal-finish-cta {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+  }
+  .modal-finish-cta .finish-container {
+    background: #222;
+    border: 2px solid var(--color-primary);
+    padding: 40px 20px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 5px #444;
+    width: 100%;
+    max-width: 700px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-primary);
+    min-height: 300px;
+    position: relative;
+  }
+  .modal-finish-cta .finish-header {
+    margin-bottom: 30px;
+  }
+  .modal-finish-cta .finish-header h1 {
+    font-size: 1.75rem;
+    text-align: center;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+    color: var(--color-text);
+  }
+
+  .modal-finish-cta .close-modal-finish {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    padding: 8px 10px;
+    line-height: 0;
+  }
+  .modal-finish-cta .close-modal-finish i {
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.375rem;
+  }
+  .modal-finish-cta .finish-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .modal-finish-cta .finish-field {
+    margin-bottom: 30px;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .modal-finish-cta .finish-field #phone {
+    padding-left: 90px;
+  }
+  .modal-finish-cta .tell-field > .iti > .iti {
+    width: 100%;
+  }
+  .modal-finish-cta .finish-field label {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-text);
+  }
+  .modal-finish-cta .finish-field input {
+    width: 100%;
+    border: 1px solid var(--color-primary);
+    padding: 10px 20px;
+    color: var(--color-primary);
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 1.125rem;
+    outline: none;
+  }
+  .modal-finish-cta .finish-field input::placeholder {
+    color: var(--color-primary);
+    font-weight: 600;
+    font-size: 1.125rem;
+    text-align: center;
+  }
+  .modal-finish-cta .finish-field .iti__selected-flag {
+    padding: 0 20px 0;
+    background: var(--color-secound);
+    border-top-left-radius: 18px;
+    border-bottom-left-radius: 18px;
+  }
+  .modal-finish-cta .btn-finish-cta {
+    background: var(--color-white);
+    color: var(--color-primary);
+    font-weight: 600;
+    font-size: 1.5rem;
+    padding: 8px 30px;
+    border-radius: 30px;
+    width: fit-content;
+    animation: pulse-animation 2s infinite;
+  }
+  .modal-finish-cta .btn-finish-cta:hover {
+    background: var(--color-white-hover);
+  }
+  .container-hours-cards, .container-minutes-cards{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin: 20px 0 40px;
+  }
+  .card{
+      background: #fff;
+      border-bottom: 3px solid var(--color-primary);
+      min-width: 55px;
+      text-align: center;
+      padding: 10px 5px;
+      color: #000;
+      font-size: 1.375rem;
+      font-weight: 600;
+      line-height: 1.4;
+      border-radius: 5px;
+      cursor: pointer;
+  }
+  .card:hover{
+    opacity: 0.9;
+    transition: opacity 0.2s;
+  }
+  .card.active{
+    background: var(--color-secound)
+  }
+  .civil-status-list{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    max-width: 800px;
+    margin: 10px;
+  }
+  button.civil-state-btn{
+    background: #a1924129;
+    border: 2px solid var(--color-primary);
+    padding: 15px 10px;
+    border-radius: 15px;
+    width: 33%;
+    max-width: 200px;
+    font-size: 1.25rem;
+    font-family: 'Poppins';
+    font-weight: 600;
+    color: var(--color-white);
+  }
+  button.civil-state-btn img{
+    height: 45px;
+  }
+
+  .section-name-one, .section-full-name, .section-moon-reading, .section-modal-pitch{
+    max-width: 800px;
+  }
+  .section-name-one .letter-container{
+    width: 100%;
+  }
+  .section-name-one .letter-container .list-itens .btn-item, .day-container .list-itens .btn-item{
+    flex: 0 0 15%;
+  }
+  .decade-sign-container .list-itens .btn-item,
+  .years-sign-container .list-itens .btn-item{
+    flex: 0 0 15%;
+  }
+  .month-container .list-itens .btn-item{
+    flex: 0 0 20%;
+  }
+
+  .day-container, .month-container, .letter-container{
+    max-width: 800px;
+    width: 100%;
+  }
+  
+  #progress {
+    transition: width 0.6s ease; 
+  }
+
+  .remove-subtitle .subheading {
+    display: none;
+  }
+
+  .row-animation{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  .card-animation {
+    background: var(--color-primary);
+    box-shadow: 0px 0px 5px #222;
+    padding: 8px 15px;
+    font-size: 1.375rem;
+    font-weight: 600;
+    border-radius: 5px;
+    opacity: 0;
+    user-select: none;
+
+  }
+
+
+  .links_footer a:hover{
+      color: var(--color-primary) !important;
+  }
+
+  footer.footer {
+    background: #303030d8;
+    padding: 20px 40px 0;
+    margin-top: 250px;
+  }
+  
+  .footer-container {
+    max-width: 1120px;
+    padding: 0 20px;
+    margin: 0 auto;
+  }
+  
+  .footer-content {
+    display: flex;
+    margin-bottom: 20px;
+  }
+  
+  .footer-copyright {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: .9125rem;
+    color: #d3d3d3;
+    font-weight: 500;
+    padding: 20px;
+    border-top: 1px solid #747474;
+  }
+  
+  .footer-copyright br {display: none;}
+  
+  .footer-left .astra-logo img {max-width: 300px;}
+  
+  
+  .footer-left .astra-logo {
+    margin-bottom: 20px;
+  }
+  
+  .links_footer P {
+    font-size: 1.125rem;
+    padding: 5px;
+  }
+  
+  .footer-copy-text p {
+    font-size: .875rem;
+    font-weight: 300;
+    line-height: 1.3;
+  }
+  
+  .footer-copy-text {
+    margin-top: 80px;
+    text-align: end;
+  }
+
+  .links_footer a:hover{
+    color: var(--color-btn) !important;
+  }
+
+
+
+
+  @media (min-width: 768px) and (max-height: 650px) {
+    .date-sign-control .date-list li{
+      width: calc(13% - 9px);
+      height: 40px;
+      font-size: 1.25rem;
+    }
+    .date-sign-container .date-header h4{
+      font-size: 1.25rem;
+      line-height: 1;
+    }
+    .form-content h3{
+      font-size: 2rem;
+    }
+    .section-header-form h2.section-heading{
+      font-size: 2.25rem !important;
+      line-height: 1.1;
+    }
+    .logo-style img{
+      height: 50px;
+    }
+    .sign-buttons-container .button-sing img{
+      height: 50px;
+    }
+    .sign-buttons-container{
+      gap: 10px;
+    }
+    .form-content .btn-back{
+      padding: 6px 15px;
+      font-size: 1.25rem;
+    }
+    button.gender-button img{
+      height: 100px;
+    }
+    .btn-item{
+      padding: 8px;
+      font-size: 1.125rem;
+    }
+    .gender-modal .gender-modal-container button.gender-button{
+      padding: 6px 25px;
+    }
+    button.civil-state-btn{
+      padding: 10px;
+      font-size: 1rem;
+    }
+    .form-button .button-form{
+      font-size: 1.25rem;
+    }
+    .options-itens .option-item img{
+      max-width: 140px;
+    }
+
+    
+
+    #audio-astrology{
+      height: 100px;
+    }
+  /*  #audio-astrology .buttons-audio-container{
+      height: calc(100% - 20px);
+      top: 10px;
+      border-width: 2px;
+    } */
+    #audio-astrology .start-pause-audio .fas, #audio-astrology .volume-video .fas{
+      font-size: 1rem;
+    }
+    #audio-astrology .vjs-text-track-cue > div{
+      font-size: 1rem;
+    }
+    .section-wrapper{
+      gap: 10px;
+    }
+    .cta-astrologia-section .cta-modal{
+      overflow-x: hidden;
+      height: 100%;
+      max-height: 410px;
+    }
+    .cta-astrologia-section{
+      height: 100%;
+    }
+  }
+  @media (min-width: 768px) {
+    .container {
+      max-width: 950px;
+      padding: 0 2.15rem;
+    }
+    .name-step-seventh .field-first-name #first-name {
+      font-size: 1.25rem;
+    }
+    
+  }
+  @media (min-width: 1200px) {
+    .container {
+      max-width: 1200px;
+    }
+  }
+  @media (max-width: 768px) {
+    .option-item.image-text {
+      width: calc(50% - 8px);
+      padding: 0;
+    }
+    .footer_nav{
+      flex-direction: column;
+    }
+    
+    .options-itens .option-item .item-checkbox{
+      display: flex;
+      justify-content: flex-start;
+    }
+    .sign-buttons-container .category-item-btn{
+      min-width: initial;
+      width: 100%;
+      padding: 15px 10px;
+      min-height: initial;
+    }
+    
+    .list-itens{
+        gap: 5px;
+        justify-content: center;
+    }
+    .option-item.image-text img {
+      max-width: 100%;
+      height: 50px;
+    }
+    .section-header-form h2.section-heading,
+    .form-content h3 {
+      display: none;
+    }
+    
+    .section-header-form .subheading{
+      line-height: 1.2;
+      margin-bottom: 0;
+      font-size: 0.75rem;
+    }
+
+    .section-life-categories .section-header-form h2.section-heading{
+      display: block;
+      line-height: 1.2;
+      font-size: 1.5rem !important;
+      margin-bottom: 15px;
+      letter-spacing: 0px;
+    }
+    .section-life-categories button.category-item-btn img{
+      height: 50px;
+      width: auto;
+    }
+    .section-life-categories button.category-item-btn p{
+      font-size: 0.75rem;
+    }
+    .section-life-categories .option-item.image-text button.category-item-btn{
+      padding: 15px;
+      min-height: 130px;
+    }
+    
+    .section-header-form h2.section-heading-mobile {
+      display: block;
+      font-size: 1.25rem;
+      letter-spacing: 0;
+      font-weight: 600;
+      line-height: 1;
+      margin-bottom: 0;
+    }
+    .form-content.name-step-one h3.title-mobile {
+      background: var(--color-primary);
+      padding: 5px;
+      border-radius: 5px;
+    }
+    .form-content h3.title-mobile {
+      display: block;
+      font-size: 1.125rem;
+      letter-spacing: -1px;
+      line-height: 1.2;
+      width: 100%;
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+    p.section-subheading {
+      font-size: 0.75rem;
+      line-height: 1.2;
+      letter-spacing: 0px;
+      margin-bottom: 10px;
+    }
+    .sign-buttons-container {
+      display: flex;
+      gap: 8px;
+      margin: 0 0 10px;
+      justify-content: center;
+      align-content: center;
+    }
+    .sign-buttons-container .button-sing {
+      width: calc(33% - 5px);
+      padding: 5px 0;
+      aspect-ratio: 1/0.7;
+    }
+    .sign-buttons-container .button-sing img {
+      height: 35px;
+      margin-bottom: 0;
+    }
+    .sign-buttons-container .button-sing p {
+      font-size: 0.8125rem;
+    }
+    .section-wrapper {
+      padding: 5px 0;
+      margin: 10px 0 0;
+      min-height: calc(100vh - 100px);
+      max-height: initial;
+      display: grid;
+      grid-template-rows: 1fr auto;
+      grid-template-columns: 1fr;
+      align-items: center;
+    }
+    .date-sign-container {
+      flex-direction: column;
+      gap: 5px;
+      margin-bottom: 10px;
+    }
+    .date-sign-container .list-itens {
+      gap: 5px;
+    }
+    .date-sign-container .date-sign-control {
+      max-width: 310px;
+    }
+    .date-sign-container .date-header {
+      margin-bottom: 3px;
+      padding: 3px;
+    }
+    .date-sign-container .date-header h4 {
+      font-size: 1.125rem;
+    }
+    .date-sign-control .date-list li {
+      width: calc(17% - 5.5px);
+      font-size: 1rem;
+      height: auto;
+      aspect-ratio: 1.15/1;
+      margin-bottom: 0;
+    }
+    .form-content .btn-back {
+      margin: 0;
+      padding: 7px 14px;
+      font-size: 1.125rem;
+      gap: 5px;
+      position: relative;
+      top: 0;
+      left: inherit;
+    }
+    .btn-back .far {
+      font-size: 1rem;
+    }
+    .decade-sign-container ul,
+    .years-sign-container ul {
+      max-width: 320px;
+      gap: 5px;
+      justify-content: center;
+      margin-top: 0;
+    }
+    .section-form .years-sign-container,
+    .section-form .decade-sign-container {
+      margin-bottom: 20px;
+      margin-top: 0px;
+      align-items: baseline;
+    }
+    .btn-item {
+      padding: 10px;
+      line-height: 1;
+      font-size: 1rem;
+    }
+   /*  .decade-sign-container .btn-item {
+      width:  calc(25% - 8px);
+    }
+    .name-step-one .btn-item , .day-container .btn-item {
+      width:  calc(16% - 6px);
+    } */
+    .month-container, .day-container{
+      margin-bottom: 15px;
+    }
+/*     .month-container .btn-item {
+      width: calc(50% - 8px);
+      padding: 7px;
+    } */
+    .day-container .list-itens,
+    .month-container .list-itens{
+      display: flex;
+      gap: 6px;
+    }
+    .section-form .decade-sign-container .list-itens,
+    .section-form .years-sign-container .list-itens{
+      display: flex;
+      gap: 6px;
+    }
+    .name-step-seventh .field-first-name #first-name {
+      margin: inherit;
+    }
+    .name-step-seventh .field-first-name {
+      height: fit-content;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+    }
+    .section-form .form-content.name-step-seventh{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+  /*  .section-form .form-content.moon-phases-step-two {
+      justify-content: space-between;
+    }
+    .section-form .form-content.moon-phases-step-two .btn-back {
+      bottom: -64px;
+    } */
+    .form-button .button-form {
+      font-weight: 500;
+      line-height: 1.2;
+      padding: 10px 30px;
+      font-size: 1rem;
+      margin-bottom: 20px;
+    }
+    .reading-moon-container .field-email-control input {
+      max-width: 275px;
+      margin-bottom: 30px;
+    }
+    .section-form .form-content.reading-moon-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: initial;
+    }
+    .section-modal-pitch .modal-pitch-title h3 {
+      font-size: 1.5rem;
+    }
+    .section-modal-pitch .modal-pitch-button button {
+      font-size: 1.125rem;
+    }
+    .hours-birthdate-container .hours-fields {
+      align-items: inherit;
+      gap: 15px;
+    }
+    .container-hours-cards, .container-minutes-cards{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      justify-content: center;
+      margin: 0 0 10px;
+    }
+    .card{
+      min-width: 35px;
+      text-align: center;
+      padding: 8px 4px 6px;
+      font-size: 0.875rem;
+      line-height: 1;
+    }
+    .alert-modal.error {
+      bottom: initial;
+      left: initial;
+      top: 20px;
+      width: 100%;
+      max-width: 280px;
+    }
+    #audio-astrology .buttons-audio-container {
+  /*       position: initial;
+      border-left: initial;
+      border-top: 2px solid var(--color-primary);
+      flex-direction: row-reverse;
+      justify-content: center;
+      align-items: center;
+      margin: auto;
+      width: calc(100% - 32px);
+      padding: 7px;
+      gap: 30px; */
+    }
+    #audio-astrology .start-pause-audio .fas, #audio-astrology .volume-video .fas{
+      font-size: 1rem;
+    }
+    #audio-astrology .video-js .vjs-volume-panel .vjs-icon-placeholder:before{
+      font-size: 1.5rem;
+    }
+    .modal-hours-controls {
+      gap: 10px;
+      height: fit-content;
+      margin-bottom: 155px;
+    }
+    #audio-astrology {
+      height: 110px;
+      display: flex;
+      flex-direction: column;
+    }
+    #audio-astrology .audio-astrology-container {
+      width: 100%;
+      padding: 8px;
+    }
+    #audio-astrology .vjs-text-track-cue > div {
+      font-size: 0.75rem;
+      line-height: 1.2;
+    }
+    .loading-container h3,
+    .sing-moon-loading h3 {
+      text-align: center;
+      font-size: 1.25rem;
+    }
+    .animation-section .animation-container {
+      height: 100%;
+      padding: 0;
+      grid-template-rows: initial;
+    }
+    .section-moon-phases .gender-modal {
+      width: 100%;
+      max-width: 300px;
+    }
+    .gender-modal .gender-modal-container {
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+    .gender-modal .gender-modal-container button.gender-button {
+      padding: 20px 20px 10px;
+      width: 100%;
+    }
+    .gender-modal button.gender-button img {
+      height: 90px;
+    }
+    .frame {
+      font-size: 0.9125rem !important;
+    }
+    .cta-astrologia-section .cta-user img {
+      width: 50px;
+    }
+    .cta-astrologia-section .cta-modal {
+      height: 100%;
+      gap: 12px;
+      overflow-y: auto;
+    }
+
+    .cta-header span {
+      color: yellow;
+      display: inline-block;
+    }
+
+    .cta-astrologia-section .cta-image-product {
+      width: 100%;
+      padding: 0;
+      margin: 0 auto;
+      margin-bottom: 6px;
+    }
+
+    .cta-astrologia-section .cta-content {
+      padding: 0;
+    }
+    .cta-astrologia-section .cta-product {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 12px;
+    }
+    .cta-astrologia-section .cta-payments {
+      width: 75%;
+    }
+    .cta-astrologia-section .cta-button .cta-btn {
+      padding: 14px 18px;
+      font-size: 1rem;
+      animation: shake 2s infinite;
+    }
+    .cta-astrologia-section .cta-paragraph h3 {
+      font-size: 0.5rem;
+    }
+    .cta-astrologia-section .text-content {
+      gap: 6px;
+    }
+    .cta-astrologia-section .cta-user p {
+      font-size: 0.5rem;
+    }
+    .cta-astrologia-section .cta-warranty h3 {
+      font-size: 0.5rem;
+      letter-spacing: -0.2px;
+      line-height: 1.2;
+    }
+    .cta-astrologia-section .cta-warranty img {
+      max-width: 70px;
+    }
+    .cta-astrologia-section .cta-security img {
+      width: 35px;
+      height: 35px;
+    }
+    .cta-astrologia-section .cta-security p {
+      font-size: 0.55rem;
+    }
+    .cta-astrologia-section .cta-image-product img {
+      margin: 0 auto;
+      width: 100%;
+      max-width: 360px;
+    }
+    .cta-astrologia-section {
+      height: 100%;
+    }
+    .cta-header span {
+      color: yellow;
+      display: inline-block;
+    }
+    .cta-astrologia-section .cta-modal {
+      height: 100%;
+      gap: 12px;
+      overflow-y: auto;
+    }
+    .modal-wrapper-list {
+      max-height: 110px;
+    }
+    .modal-wrapper-list li {
+      padding: 7px 12px;
+    }
+    .modal-wrapper-list.country-list li {
+      padding: 7px 12px;
+    }
+    .country-selector-container .country-modal {
+      margin-bottom: 130px;
+    }
+    .section-name-one.remove-subtitle .section-subheading {
+      display: none;
+    }
+    .section-wrapper .section-form .form-container {
+      min-height: initial;
+      gap: initial;
+    }
+    .section-form .form-content .title-box-form{
+      font-size: 0.875rem;
+      margin-bottom: 15px;
+    }
+    .modal-finish-cta .finish-container {
+      min-height: 60%;
+      height: auto;
+    }
+    .modal-finish-cta .btn-finish-cta {
+      width: 100%;
+    }
+    .modal-finish-cta .finish-container {
+      width: calc(100% - 30px);
+      padding: 15px;
+    }
+    .circle {
+      width: 16px;
+      height: 16px;
+      border-width: 1px;
+    }
+    .circle span{
+      width: 10px;
+      height: 10px;
+    }
+    .options-itens .option-item p{
+      font-size: 0.75rem;
+    }
+    .civil-status-list{
+      display: flex;
+      margin: 0 0 10px;
+      gap: 6px;
+      width: 100%;
+    }
+    button.civil-state-btn{
+      width: calc(50% - 10px);
+      max-width: 199px;
+      padding: 10px;
+      font-size: 0.75rem;
+    }
+    button.civil-state-btn img{
+      height: 40px;
+    }
+    .country-quest .btns-modal-country{
+      margin: 25px 0;
+    }
+    .logo-style{
+      display: flex;
+      justify-content: center;
+    }
+    .logo-style img{
+      height: 35px;
+    }
+    .section-life-categories .options-itens{
+      gap: 10px;
+    }
+    .section-wrapper .section-form{
+      padding: 25px 15px;
+    }
+    .gender-modal .gender-control label{
+      font-size: 0.75rem;
+    }
+    .gender-modal .gender-control input{
+      height: 16px;
+      width: 16px;
+      border-width: 1px;
+    }
+    #audio-astrology .buttons-audio-container .start-pause-audio{
+      height: 20px;
+      width: 20px;
+      top: 8px;
+      right: 8px;
+    }
+    #audio-astrology .video-js .vjs-volume-panel{
+      height: 20px;
+      width: 20px;
+      bottom: 2px;
+      right: 2px;
+    }
+    #progress-bar #progress{
+      height: 5px !important;
+    }
+    .civil-status-modal.modal-wrapper-container {
+      width: 100%;
+    }
+    .section-name-one .letter-container .list-itens{    
+      display: flex;
+    }
+    .section-name-one .letter-container .list-itens .btn-item{
+      font-size: 1rem; 
+    }
+    #progress-bar{
+      background-color: #776e6e69;
+    }
+    #top-bar{
+      font-size: 0.75rem !important;
+    }
+
+    .section-name-one .letter-container .list-itens .btn-item, .day-container .list-itens .btn-item{
+      flex: 0 0 20%;
+    }
+    .decade-sign-container .list-itens .btn-item,
+    .years-sign-container .list-itens .btn-item{
+      flex: 0 0 15%;
+    }
+    .month-container .list-itens .btn-item{
+      flex: 0 0 48%;
+    }
+    footer.footer{
+      margin-top: 200px;
+      padding: 50px 20px 0;
+    }
+    .footer-container{
+      padding: 0;
+    }
+    .links_footer P{
+      font-size: 0.875rem;
+      padding: 0px;
+      font-weight: 400;
+    }
+    .links_footer{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px 10px;
+    }
+    .footer-left .astra-logo{
+      margin-bottom: 10px;
+    }
+    .footer-copy-text{
+      margin-top: 20px;
+      text-align: justify;
+    }
+    .footer-content{
+      margin-bottom: 30px;
+      flex-direction: column;
+    }
+    .footer-copyright{
+      font-size: .75rem;
+    }
+    .footer-copy-text p{
+      font-size: .75rem;
+    }
+  }
+
+
+  #top-bar{
+    width: 100%;
+    background-color: var(--color-primary);
+    padding: 10px;
+    line-height: 1.2;
+    font-size: 1rem;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+
+    #num-people{
+        color: #000;
+    }
+    .input-control .field-input {
+      padding: 10px 20px 8px;
+      outline: none;
+      color: #000;
+      font-size: 0.875rem;
+  }
+  }
+
+  .day-container, .month-container, .letter-container{
+    max-width: 800px;
+    }
+
+  .day-container, .month-container, .letter-container{
+    max-width: 800px;
+  }
+
+
+  #progress {
+    transition: width 0.6s ease; 
+  }
+
+  .remove-subtitle .subheading {
+  display: none;
+  }
+
+  #progress {
+    transition: width 0.6s ease; 
+  }
+
+  .remove-subtitle .subheading {
+  display: none;
+  }
